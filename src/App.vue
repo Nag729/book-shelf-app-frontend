@@ -1,39 +1,16 @@
 <template>
 	<div id="app">
 		<div class="sf-site-all">
-			<!-- Navbar -->
-			<b-navbar fixed-top>
-				<template slot="brand">
-					<b-navbar-item tag="router-link" :to="{ path: '/' }">
-						<!-- FIXME: fix image -->
-						<img
-							src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-							alt="Lightweight UI components for Vue.js based on Bulma"
-						/>
-					</b-navbar-item>
-				</template>
-				<template slot="start">
-					<b-navbar-item tag="router-link" :to="{ path: '/graphql' }">Sample</b-navbar-item>
-					<b-navbar-item tag="router-link" :to="{ path: '/book-info' }">Book Info</b-navbar-item>
-				</template>
+			<!-- Header -->
+			<TheHeader></TheHeader>
 
-				<template slot="end">
-					<b-navbar-item tag="div">
-						<div class="buttons">
-							<a class="button is-primary">
-								<strong>Sign up</strong>
-							</a>
-							<a class="button is-light">Log in</a>
-						</div>
-					</b-navbar-item>
-				</template>
-			</b-navbar>
 			<!-- Main View -->
 			<div class="container sf-site-content">
-				<section>
+				<section class="site-content">
 					<router-view />
 				</section>
 			</div>
+
 			<!-- Footer -->
 			<footer class="footer">
 				<div class="container has-text-centered">
@@ -43,6 +20,20 @@
 		</div>
 	</div>
 </template>
+
+<script>
+import TheHeader from '@/components/TheHeader';
+
+export default {
+	name: 'App',
+
+	components: {
+		TheHeader,
+	},
+
+	data() {},
+};
+</script>
 
 <style lang="scss">
 // Import Bulma's core
@@ -109,11 +100,16 @@ $link-focus-border: $primary;
 
 .sf-site-all {
 	min-height: 100vh; /* 全体の高さを最低でもビューポートの100%にする */
-	display: flex; /* 子クラスを横並びにする */
+	display: flex;
 	flex-direction: column; /* 子クラスの横並びの方向を縦にする */
 }
+
 .sf-site-content {
 	flex: 1; /* flexに1つだけ数値を指定するとその要素は伸びる */
+}
+
+.site-content {
+	margin: 1rem 0 1rem 0;
 }
 
 #app {

@@ -4,14 +4,25 @@
 			<div class="columns">
 				<div class="column">
 					<b-field label="DATE">
-						<b-datepicker placeholder="Click to select..." icon="calendar-today" trap-focus v-model="date">
-						</b-datepicker>
+						<b-datepicker
+							placeholder="Click to select..."
+							icon="calendar-today"
+							trap-focus
+							v-model="date"
+						></b-datepicker>
 					</b-field>
 				</div>
 				<div class="column">
 					<b-field label="PAGE">
-						<b-numberinput v-model="number"></b-numberinput>
+						<b-numberinput v-model="number" step="5" min="0" :max="max"></b-numberinput>
 					</b-field>
+				</div>
+			</div>
+			<div class="columns">
+				<div class="column">
+					<div class="is-pulled-right">
+						<b-button type="is-info" icon-left="book-open" @click="regist">Read !</b-button>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -26,9 +37,16 @@ export default {
 
 	data() {
 		return {
-			date: '',
-			number: 0,
+			date: new Date(),
+			number: 0, // TODO: 初期値はサーバから取得した値
+			max: 500, //TODO: サーバから取得した値
 		};
+	},
+
+	methods: {
+		regist() {
+			console.log('REGIST!');
+		},
 	},
 };
 </script>

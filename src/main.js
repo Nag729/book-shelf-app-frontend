@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 // UI Component
 Vue.use(Buefy, {
-	defaultIconPack: 'fas',
+	defaultIconPack: 'mdi',
 });
 
 // Apollo
@@ -18,9 +18,11 @@ const apolloClient = new ApolloClient({
 	uri: 'http://localhost:8888/graphql',
 	// uri: 'https://book-shelf-backend.herokuapp.com/graphql',
 });
+
 const apolloProvider = new VueApollo({
 	defaultClient: apolloClient,
 });
+
 Vue.use(VueApollo);
 
 new Vue({

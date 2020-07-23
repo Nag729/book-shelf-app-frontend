@@ -9,6 +9,9 @@
 		<div class="card-content">
 			<div class="content">{{ title }}</div>
 		</div>
+		<footer class="card-footer">
+			<b-button type="is-info" icon-left="share-variant" @click="shareBook" class="card-footer-item">Share</b-button>
+		</footer>
 	</div>
 </template>
 
@@ -24,5 +27,13 @@ export default {
 			type: String,
 		},
 	},
+
+	methods: {
+		shareBook() {
+			console.log('share');
+		},
+	},
 };
 </script>
+
+<style lang="scss" scoped></style>
