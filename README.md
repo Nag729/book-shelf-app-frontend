@@ -1,39 +1,29 @@
-# frontend
+# book-shelf-app-frontend
 
-## Project setup
-```
+## setup
+
+```bash
+# 初回だけ
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# 起動
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+## settings
+
+mock と heroku の接続先変更
+
+:star: `src/main.js`
+
+```js
+const apolloClient = new ApolloClient({
+	// mockの場合
+	uri: 'http://localhost:8888/graphql',
+
+	// herokuの場合
+	// uri: 'https://book-shelf-backend.herokuapp.com/graphql',
+});
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## refs
