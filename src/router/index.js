@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import GraphQL from '../views/GraphQL.vue';
+import BookInfo from '../views/BookInfo.vue';
 
 Vue.use(VueRouter);
 
@@ -12,17 +13,14 @@ const routes = [
 		component: Home,
 	},
 	{
-		path: '/about',
-		name: 'About',
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-	},
-	{
 		path: '/graphql',
 		name: 'GraphQL',
 		component: GraphQL,
+	},
+	{
+		path: '/book-info',
+		name: 'BookInfo',
+		component: BookInfo,
 	},
 ];
 

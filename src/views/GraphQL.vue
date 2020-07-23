@@ -1,10 +1,9 @@
 <template>
 	<div>
-		<h1>GraphQL</h1>
-		<ul v-for="post in allPosts" :key="post.id">
-			<li>TITLE: {{ post.title }}</li>
-			<li>CONTENT: {{ post.content }}</li>
-		</ul>
+		<h1 class="title">GraphQL Sample</h1>
+		<section>
+			<b-table :data="allPosts" :columns="columns" striped hoverable></b-table>
+		</section>
 	</div>
 </template>
 
@@ -26,6 +25,20 @@ export default {
 	data() {
 		return {
 			allPosts: [],
+			columns: [
+				{
+					field: 'id',
+					label: 'ID',
+				},
+				{
+					field: 'title',
+					label: 'TITLE',
+				},
+				{
+					field: 'content',
+					label: 'CONTENT',
+				},
+			],
 		};
 	},
 	apollo: {
