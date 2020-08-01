@@ -14,7 +14,7 @@
 				</div>
 				<div class="column">
 					<b-field label="PAGE">
-						<b-numberinput v-model="number" step="5" min="0" :max="max"></b-numberinput>
+						<b-numberinput v-model="number" step="5" :min="min" :max="max"></b-numberinput>
 					</b-field>
 				</div>
 			</div>
@@ -39,6 +39,7 @@ export default {
 		return {
 			date: new Date(),
 			number: 0, // TODO: 初期値はサーバから取得した値
+			min: 0, // TODO: サーバから取得した値
 			max: 500, //TODO: サーバから取得した値
 		};
 	},
