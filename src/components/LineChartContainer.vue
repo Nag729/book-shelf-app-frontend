@@ -89,12 +89,11 @@ export default {
   apollo: {
     book: {
       query: PROGRESS_INFO_QUERY,
-      result({ data }) {
-        console.log("LineChartContainer Works!");
-        console.log(data);
+      result() {
         this.loaded = false;
         this.updateChartData();
         this.$nextTick(() => {
+          // re-render chart
           this.loaded = true;
         });
       }
