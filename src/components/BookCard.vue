@@ -7,31 +7,46 @@
 			</figure>
 		</div>
 		<div class="card-content">
-			<div class="content">{{ title }}</div>
+			<div class="content">{{ book.title }}</div>
 		</div>
-		<footer class="card-footer">
+		<!-- <footer class="card-footer">
 			<b-button type="is-info" icon-left="share-variant" @click="shareBook" class="card-footer-item">Share</b-button>
-		</footer>
+		</footer> -->
 	</div>
 </template>
 
 <script>
+import gql from 'graphql-tag';
+
+const BOOK_CARD_QUERY = gql`
+	query {
+		book(id: 1) {
+			id
+			title
+			imageUrl
+		}
+	}
+`;
+
 export default {
 	name: 'BookCard',
 
-	props: {
-		imageUrl: {
-			type: String,
-		},
-		title: {
-			type: String,
+	data() {
+		return {
+			book: {},
+		};
+	},
+
+	apollo: {
+		book: {
+			query: BOOK_CARD_QUERY,
 		},
 	},
 
 	methods: {
-		shareBook() {
-			console.log('share');
-		},
+		// shareBook() {
+		// 	console.log('share!');
+		// },
 	},
 };
 </script>

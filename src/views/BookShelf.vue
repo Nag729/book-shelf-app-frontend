@@ -19,20 +19,7 @@ export default {
   },
 
   data() {
-    return {
-      books: [
-        {
-          id: 123,
-          image_url: "@/assets/graphql.jpg",
-          progress: 80
-        },
-        {
-          id: 456,
-          image_url: "@/assets/hbr.jpg",
-          progress: 20
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>

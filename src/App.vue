@@ -1,43 +1,39 @@
 <template>
-	<div id="app">
-		<div class="sf-site-all">
-			<!-- Header -->
-			<TheHeader></TheHeader>
+  <div id="app">
+    <div class="sf-site-all">
+      <!-- Header -->
+      <TheHeader></TheHeader>
 
-			<!-- Main View -->
-			<div class="container sf-site-content">
-				<section class="site-content">
-					<router-view />
-				</section>
-			</div>
+      <!-- Main View -->
+      <div class="container sf-site-content">
+        <section class="site-content">
+          <router-view />
+        </section>
+      </div>
 
-			<!-- Footer -->
-			<footer class="footer">
-				<div class="container has-text-centered">
-					<p>@Author: Nag729 / ooyu-kioo</p>
-				</div>
-			</footer>
-		</div>
-	</div>
+      <!-- Footer -->
+      <TheFooter></TheFooter>
+    </div>
+  </div>
 </template>
 
 <script>
-import TheHeader from '@/components/TheHeader';
+import TheHeader from "@/components/globals/TheHeader";
+import TheFooter from "@/components/globals/TheFooter";
 
 export default {
-	name: 'App',
+  name: "App",
 
-	components: {
-		TheHeader,
-	},
-
-	data() {},
+  components: {
+    TheHeader,
+    TheFooter
+  }
 };
 </script>
 
 <style lang="scss">
 // Import Bulma's core
-@import '~bulma/sass/utilities/_all';
+@import "~bulma/sass/utilities/_all";
 
 // Set your colors
 $primary: #8c67ef;
@@ -47,46 +43,46 @@ $twitter-invert: findColorInvert($twitter);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
-	'white': (
-		$white,
-		$black,
-	),
-	'black': (
-		$black,
-		$white,
-	),
-	'light': (
-		$light,
-		$light-invert,
-	),
-	'dark': (
-		$dark,
-		$dark-invert,
-	),
-	'primary': (
-		$primary,
-		$primary-invert,
-	),
-	'info': (
-		$info,
-		$info-invert,
-	),
-	'success': (
-		$success,
-		$success-invert,
-	),
-	'warning': (
-		$warning,
-		$warning-invert,
-	),
-	'danger': (
-		$danger,
-		$danger-invert,
-	),
-	'twitter': (
-		$twitter,
-		$twitter-invert,
-	),
+  "white": (
+    $white,
+    $black
+  ),
+  "black": (
+    $black,
+    $white
+  ),
+  "light": (
+    $light,
+    $light-invert
+  ),
+  "dark": (
+    $dark,
+    $dark-invert
+  ),
+  "primary": (
+    $primary,
+    $primary-invert
+  ),
+  "info": (
+    $info,
+    $info-invert
+  ),
+  "success": (
+    $success,
+    $success-invert
+  ),
+  "warning": (
+    $warning,
+    $warning-invert
+  ),
+  "danger": (
+    $danger,
+    $danger-invert
+  ),
+  "twitter": (
+    $twitter,
+    $twitter-invert
+  )
 );
 
 // Links
@@ -95,36 +91,36 @@ $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
 .sf-site-all {
-	min-height: 100vh; /* 全体の高さを最低でもビューポートの100%にする */
-	display: flex;
-	flex-direction: column; /* 子クラスの横並びの方向を縦にする */
+  min-height: 100vh; /* 全体の高さを最低でもビューポートの100%にする */
+  display: flex;
+  flex-direction: column; /* 子クラスの横並びの方向を縦にする */
 }
 
 .sf-site-content {
-	flex: 1; /* flexに1つだけ数値を指定するとその要素は伸びる */
+  flex: 1; /* flexに1つだけ数値を指定するとその要素は伸びる */
 }
 
 .site-content {
-	margin: 1rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
-	// text-align: center;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  // text-align: center;
 }
 
 #nav {
-	padding: 30px;
+  padding: 30px;
 
-	a {
-		font-weight: bold;
-	}
+  a {
+    font-weight: bold;
+  }
 }
 </style>

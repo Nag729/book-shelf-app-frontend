@@ -15,7 +15,8 @@ Vue.use(Buefy, {
 
 // Apollo
 const apolloClient = new ApolloClient({
-	uri: 'http://localhost:8888/graphql',
+	// uri: 'http://localhost:8888/graphql',
+	uri: 'http://localhost:3000/graphql',
 	// uri: 'https://book-shelf-backend.herokuapp.com/graphql',
 });
 
