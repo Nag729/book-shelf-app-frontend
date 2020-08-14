@@ -2,14 +2,14 @@
   <div>
     <section>
       <div class="columns">
-        <div class="column is-one-quarter">
+        <div class="column is-one-third">
           <!-- picture -->
           <!-- TODO: ネットワーク越しの画像取得でCORBエラー -->
           <BookCard :image-url="book.image_url" :title="book.title"></BookCard>
         </div>
         <div class="column">
           <!-- Reading info -->
-          <!-- TODO: -->
+          <ReadingInfo :latest-page="latestPage" :all-pages="book.all_pages"></ReadingInfo>
           <!-- line chart -->
           <LineChart></LineChart>
           <!-- Forms -->
@@ -23,6 +23,7 @@
 <script>
 import gql from "graphql-tag";
 import BookCard from "@/components/BookCard";
+import ReadingInfo from "@/components/ReadingInfo";
 import LineChart from "@/components/LineChart";
 import RegisterForm from "@/components/RegisterForm";
 
@@ -36,9 +37,8 @@ const BOOK_INFO_QUERY = gql`
       # start_date
       # end_date
       status
-      progress_ids {
+      progress {
         id
-        book_id
         current_page
       }
     }
@@ -50,6 +50,7 @@ export default {
 
   components: {
     BookCard,
+    ReadingInfo,
     LineChart,
     RegisterForm
   },
@@ -58,6 +59,14 @@ export default {
     return {
       book: {}
     };
+  },
+
+  computed: {
+    latestPage() {
+      const progress = this.book.progress;
+      const idx = progress.length - 1;
+      return progress[idx].current_page;
+    }
   },
 
   apollo: {
