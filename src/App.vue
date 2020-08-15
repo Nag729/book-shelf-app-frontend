@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="sf-site-all">
+    <div class="sf-site-all" :class="hasBackground ? 'has-background' : ''">
       <!-- Header -->
       <TheHeader></TheHeader>
 
@@ -27,6 +27,12 @@ export default {
   components: {
     TheHeader,
     TheFooter
+  },
+
+  computed: {
+    hasBackground() {
+      return this.$route.name === "BookShelf";
+    }
   }
 };
 </script>
@@ -102,6 +108,10 @@ $link-focus-border: $primary;
 
 .sf-site-content {
   flex: 1; /* flexに1つだけ数値を指定するとその要素は伸びる */
+}
+
+.has-background {
+  background-image: url("/shelf-background.jpg");
 }
 
 .site-content {
