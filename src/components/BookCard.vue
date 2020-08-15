@@ -2,16 +2,20 @@
   <div class="card">
     <div class="card-image">
       <figure class="image">
-        <!-- TODO: image-urlをバインドする -->
-        <img src="@/assets/graphql.jpg" alt="Placeholder image" />
+        <img :src="book.imageUrl" alt="Placeholder image" />
       </figure>
     </div>
     <div class="card-content">
       <div class="content">{{ book.title }}</div>
     </div>
-    <!-- <footer class="card-footer">
-			<b-button type="is-info" icon-left="share-variant" @click="shareBook" class="card-footer-item">Share</b-button>
-    </footer>-->
+    <footer class="card-footer">
+      <b-button
+        type="is-info"
+        icon-left="share-variant"
+        @click="shareBook"
+        class="card-footer-item"
+      >Share</b-button>
+    </footer>
   </div>
 </template>
 
@@ -44,9 +48,9 @@ export default {
   },
 
   methods: {
-    // shareBook() {
-    // 	console.log('share!');
-    // },
+    shareBook() {
+      console.log("share!");
+    }
   }
 };
 </script>

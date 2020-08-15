@@ -1,18 +1,33 @@
 <template>
-  <div class="card">shelfだよ</div>
+  <div class="card" @click="handleClick">
+    <a>
+      <figure class="image">
+        <img :src="imageUrl" />
+      </figure>
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "SingleBook",
+  name: 'SingleBook',
 
-  props: {},
-
-  data() {
-    return {};
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
   },
 
-  methods: {}
+  methods: {
+    handleClick() {
+      this.$emit('card-click', this.id);
+    },
+  },
 };
 </script>
 
