@@ -21,7 +21,12 @@ export default {
 
   apollo: {
     book: {
-      query: PROGRESS_INFO_QUERY
+      query: PROGRESS_INFO_QUERY,
+      variables() {
+        return {
+          id: this.$route.params.id
+        };
+      }
     }
   },
 

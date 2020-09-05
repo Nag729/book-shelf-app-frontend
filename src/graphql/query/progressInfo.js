@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const PROGRESS_INFO_QUERY = gql`
-  query searchProgress {
-    book(id: 1) {
+  query searchProgress($id: ID!) {
+    book(id: $id) {
       id
       allPages
       status

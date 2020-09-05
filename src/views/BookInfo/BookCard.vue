@@ -33,7 +33,12 @@ export default {
 
   apollo: {
     book: {
-      query: BOOK_INFO_QUERY
+      query: BOOK_INFO_QUERY,
+      variables() {
+        return {
+          id: this.$route.params.id
+        };
+      }
     }
   },
 

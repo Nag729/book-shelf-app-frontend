@@ -74,6 +74,11 @@ export default {
   apollo: {
     book: {
       query: PROGRESS_INFO_QUERY,
+      variables() {
+        return {
+          id: this.$route.params.id
+        };
+      },
       result() {
         this.loaded = false;
         this.updateChartData();

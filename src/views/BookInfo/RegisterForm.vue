@@ -53,7 +53,12 @@ export default {
 
   apollo: {
     book: {
-      query: PROGRESS_INFO_QUERY
+      query: PROGRESS_INFO_QUERY,
+      variables() {
+        return {
+          id: this.$route.params.id
+        };
+      }
     }
   },
 
@@ -82,6 +87,7 @@ export default {
       await this.$apollo.mutate({
         mutation: PROGRESS_REGIST_MUTATION,
         variables: {
+          bookId: this.$route.params.id,
           currentPage: this.page,
           readAt: this.date
         }
