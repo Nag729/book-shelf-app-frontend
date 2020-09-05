@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { ALL_BOOKS_QUERY } from "@/graphql/query/allBooks";
 import { BOOK_REGIST_MUTATION } from "@/graphql/mutation/bookRegist";
 
 // TODO: Google Books APIにApollo経由で通信を飛ばす
@@ -72,10 +73,17 @@ export default {
 
   data() {
     return {
+      allBooks: "",
       books: [],
       selectedBook: {},
       keyword: ""
     };
+  },
+
+  apollo: {
+    allBooks: {
+      query: ALL_BOOKS_QUERY
+    }
   },
 
   methods: {
@@ -129,7 +137,11 @@ export default {
         type: "is-success"
       });
 
-      // TODO: re-search
+      // re-search
+      await this.$apollo.queries.allBooks.refetch();
+
+      // close the modal
+      this.isLocalActive = false;
     }
   },
 

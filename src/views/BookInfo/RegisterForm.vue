@@ -92,7 +92,7 @@ export default {
         type: "is-success"
       });
 
-      // 再検索
+      // re-search
       await this.$apollo.queries.book.refetch();
       this.setInitValues();
     }

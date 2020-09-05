@@ -19,19 +19,9 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
 import SingleBook from "./SingleBook";
 import BookAddModal from "./BookAddModal";
-
-const ALL_BOOKS_QUERY = gql`
-  query {
-    allBooks {
-      id
-      title
-      imageUrl
-    }
-  }
-`;
+import { ALL_BOOKS_QUERY } from "@/graphql/query/allBooks";
 
 export default {
   name: "BookShelf",
