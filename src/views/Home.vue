@@ -1,8 +1,18 @@
 <template>
   <div class="home">
-    <h1>Top Page</h1>
+    <div v-if="!$auth.isAuthenticated">
+      <section class="hero is-medium is-info is-bold">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <h2 class="title">Log in with Google Account.</h2>
+            <b-button size="is-medium" icon-left="shield-plus" @click="login">Log in</b-button>
+          </div>
+        </div>
+      </section>
+    </div>
 
-    <div>
+    <div v-if="$auth.isAuthenticated">
+      <h1>ログインしてくれてありがとう！</h1>
       <div>
         <img :src="$auth.user.picture" />
         <h2>{{ $auth.user.name }}</h2>
@@ -18,6 +28,12 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
+
+  methods: {
+    async login() {
+      await this.$auth.loginWithRedirect();
+    }
+  }
 };
 </script>
