@@ -26,7 +26,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 // import { RestLink } from 'apollo-link-rest';
 
 const apolloClient = new ApolloClient({
-  // uri: 'http://localhost:4000/graphql',
   uri: 'http://localhost:3000/graphql',
   // uri: 'https://book-shelf-backend.herokuapp.com/graphql',
 
@@ -41,7 +40,7 @@ const apolloProvider = new VueApollo({
 Vue.use(VueApollo);
 
 // Import the Auth0 configuration
-import { domain, clientId } from '../auth_config.json';
+import { domain, clientId } from './../auth_config.json';
 // Import the plugin here
 import { Auth0Plugin } from './auth';
 // Install the authentication plugin here

@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { authGuard } from '@/auth/authGuard';
+
 import Home from '../views/Home.vue';
 import BookShelf from '../views/BookShelf/BookShelf.vue';
 import BookInfo from '../views/BookInfo/BookInfo.vue';
@@ -16,11 +18,13 @@ const routes = [
     path: '/book-shelf',
     name: 'BookShelf',
     component: BookShelf,
+    beforeEnter: authGuard,
   },
   {
     path: '/book-info/:id',
     name: 'BookInfo',
     component: BookInfo,
+    beforeEnter: authGuard,
   },
 ];
 
