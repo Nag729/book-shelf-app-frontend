@@ -10,6 +10,7 @@
 		"test:unit": "vue-cli-service test:unit"
 	},
 	"dependencies": {
+		"@auth0/auth0-spa-js": "^1.12.0",
 		"apollo-boost": "^0.4.9",
 		"apollo-cache-inmemory": "^1.6.6",
 		"apollo-client": "^2.6.10",
