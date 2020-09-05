@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- TODO: STATUSによって出力内容を変える -->
-    <p
-      class="is-size-4 has-text-centered has-text-weight-bold"
-    >I read {{ latestPage }} / {{ book.allPages }} pages now ! 😆</p>
+    <b-taglist attached>
+      <b-tag type="is-dark">STATUS</b-tag>
+      <b-tag type="is-info">{{ book.status }}</b-tag>
+    </b-taglist>
   </div>
 </template>
 
@@ -27,16 +27,6 @@ export default {
           id: this.$route.params.id
         };
       }
-    }
-  },
-
-  computed: {
-    latestPage() {
-      const progress = this.book.progress;
-      if (!progress || progress.length === 0) return 0;
-
-      const idx = progress.length - 1;
-      return progress[idx].currentPage;
     }
   }
 };

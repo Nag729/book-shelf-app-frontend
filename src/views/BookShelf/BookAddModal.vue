@@ -151,6 +151,12 @@ export default {
         return this.isActive;
       },
       set(value) {
+        if (!value) {
+          // reset data
+          this.books = [];
+          this.selectedBook = {};
+          this.keyword = "";
+        }
         this.$emit("update:isActive", value);
       }
     }

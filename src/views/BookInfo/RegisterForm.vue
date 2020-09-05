@@ -82,7 +82,33 @@ export default {
     },
 
     async regist() {
-      // TODO: date, pageのバリデーションチェックを行う
+      // Validation Check
+      const inputDate = new Date(this.date);
+      let isDateOk;
+      let isPageOk;
+
+      if (this.book.progress.length > 0) {
+        const lastProgress = this.book.progress.slice(-1)[0];
+        const lastDate = new Date(lastProgress.readAt);
+        const lastPage = lastProgress.currentPage;
+
+        isDateOk =
+          lastDate.getDate() <= inputDate.getDate() &&
+          inputDate.getDate() <= new Date().getDate();
+        isPageOk = lastPage < this.page && this.page <= this.max;
+      } else {
+        isDateOk = inputDate.getDate() <= new Date().getDate();
+        isPageOk = 0 < this.page && this.page <= this.max;
+      }
+
+      if (!isDateOk || !isPageOk) {
+        this.$buefy.dialog.alert({
+          title: "Validation Error",
+          message: "Input Error has occured!",
+          type: "is-danger"
+        });
+        return;
+      }
 
       await this.$apollo.mutate({
         mutation: PROGRESS_REGIST_MUTATION,
