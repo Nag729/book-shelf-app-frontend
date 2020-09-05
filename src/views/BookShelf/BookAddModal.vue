@@ -26,13 +26,11 @@
 
           <!-- Books -->
           <template v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.title">
-            <h5 class="subtitle is-5 has-text-centered">
-              selected title is
-            </h5>
+            <h5 class="subtitle is-5 has-text-centered">selected title is</h5>
             <!-- CSSでラインマーカー風にする -->
-            <h4 class="title is-4 has-text-centered line-markered">
-              {{ selectedBook.volumeInfo.title }}
-            </h4>
+            <h4
+              class="title is-4 has-text-centered line-markered"
+            >{{ selectedBook.volumeInfo.title }}</h4>
           </template>
 
           <div class="columns">
@@ -53,29 +51,30 @@
 </template>
 
 <script>
+import { BOOK_REGIST_MUTATION } from "@/graphql/mutation/bookRegist";
+
 // TODO: Google Books APIにApollo経由で通信を飛ばす
-// import gql from 'graphql-tag';
-import SingleBook from '@/components/SingleBook';
+import SingleBook from "./SingleBook";
 
 export default {
-  name: 'BookAddModal',
+  name: "BookAddModal",
 
   components: {
-    SingleBook,
+    SingleBook
   },
 
   props: {
     isActive: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
 
   data() {
     return {
       books: [],
       selectedBook: {},
-      keyword: '',
+      keyword: ""
     };
   },
 
@@ -88,15 +87,19 @@ export default {
 
       // REST to Google Books API
       // https://developers.google.com/books/docs/v1/using
-      const response = await this.axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.keyword}`);
+      const response = await this.axios.get(
+        `https://www.googleapis.com/books/v1/volumes?q=${this.keyword}`
+      );
 
       // Arrange data
       const topItems = response.data.items
-        .filter((book) => {
-          return book.saleInfo.country === 'JP';
+        .filter(book => {
+          return book.saleInfo.country === "JP";
         })
-        .filter((book) => {
-          return book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail;
+        .filter(book => {
+          return (
+            book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+          );
         })
         .slice(0, 3);
 
@@ -107,11 +110,27 @@ export default {
       this.selectedBook = book;
     },
 
-    registNewBook() {
-      // TODO: Mutation追加する
+    async registNewBook() {
+      const book = this.selectedBook;
+      console.log(book);
 
-      console.log(this.selectedBook);
-    },
+      await this.$apollo.mutate({
+        mutation: BOOK_REGIST_MUTATION,
+        variables: {
+          title: book.volumeInfo.title,
+          imageUrl: book.volumeInfo.imageLinks.thumbnail,
+          allPages: 100,
+          status: "HAVE"
+        }
+      });
+
+      this.$buefy.toast.open({
+        message: "Register Success!",
+        type: "is-success"
+      });
+
+      // TODO: re-search
+    }
   },
 
   computed: {
@@ -120,10 +139,10 @@ export default {
         return this.isActive;
       },
       set(value) {
-        this.$emit('update:isActive', value);
-      },
-    },
-  },
+        this.$emit("update:isActive", value);
+      }
+    }
+  }
 };
 </script>
 

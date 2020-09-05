@@ -20,17 +20,7 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-
-const BOOK_CARD_QUERY = gql`
-  query {
-    book(id: 1) {
-      id
-      title
-      imageUrl
-    }
-  }
-`;
+import { BOOK_INFO_QUERY } from "@/graphql/query/bookInfo";
 
 export default {
   name: "BookCard",
@@ -43,7 +33,7 @@ export default {
 
   apollo: {
     book: {
-      query: BOOK_CARD_QUERY
+      query: BOOK_INFO_QUERY
     }
   },
 

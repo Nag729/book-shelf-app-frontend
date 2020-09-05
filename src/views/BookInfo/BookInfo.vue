@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import BookCard from "@/components/BookCard";
-import ReadingInfo from "@/components/ReadingInfo";
-import LineChartContainer from "@/components/LineChartContainer";
-import RegisterForm from "@/components/RegisterForm";
+import BookCard from "./BookCard";
+import ReadingInfo from "./ReadingInfo";
+import LineChartContainer from "./LineChartContainer";
+import RegisterForm from "./RegisterForm";
 
 export default {
   name: "BookInfo",

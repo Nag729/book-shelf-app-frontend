@@ -5,24 +5,9 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
 import moment from "moment";
 import LineChart from "@/components/LineChart";
-
-const PROGRESS_INFO_QUERY = gql`
-  query {
-    book(id: 1) {
-      id
-      allPages
-      status
-      progress {
-        id
-        currentPage
-        readAt
-      }
-    }
-  }
-`;
+import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
 
 export default {
   name: "LineChartContainer",

@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
-import SingleBook from '@/components/SingleBook';
-import BookAddModal from '@/components/BookAddModal';
+import gql from "graphql-tag";
+import SingleBook from "./SingleBook";
+import BookAddModal from "./BookAddModal";
 
 const ALL_BOOKS_QUERY = gql`
   query {
@@ -34,35 +34,35 @@ const ALL_BOOKS_QUERY = gql`
 `;
 
 export default {
-  name: 'BookShelf',
+  name: "BookShelf",
 
   components: {
     SingleBook,
-    BookAddModal,
+    BookAddModal
   },
 
   data() {
     return {
       allBooks: [],
-      isActive: false,
+      isActive: false
     };
   },
 
   apollo: {
     allBooks: {
-      query: ALL_BOOKS_QUERY,
-    },
+      query: ALL_BOOKS_QUERY
+    }
   },
 
   methods: {
     routeDetail(id) {
-      this.$router.push({ name: 'BookInfo', params: { id: id } });
+      this.$router.push({ name: "BookInfo", params: { id: id } });
     },
 
     openAddDialog() {
       // show modal
       this.isActive = true;
-    },
-  },
+    }
+  }
 };
 </script>

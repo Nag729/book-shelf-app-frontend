@@ -33,35 +33,8 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-
-const REGISTER_INFO_QUERY = gql`
-  query {
-    book(id: 1) {
-      id
-      allPages
-      progress {
-        id
-        currentPage
-        readAt
-      }
-    }
-  }
-`;
-
-const PROGRESS_REGISTER_MUTATION = gql`
-  mutation createProgress($currentPage: Int!, $readAt: ISO8601DateTime!) {
-    createProgress(bookId: 1, currentPage: $currentPage, readAt: $readAt) {
-      id
-      # currentPage
-      # readAt
-      # book {
-      #   id
-      #   title
-      # }
-    }
-  }
-`;
+import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
+import { PROGRESS_REGIST_MUTATION } from "@/graphql/mutation/progressRegist";
 
 export default {
   name: "RegisterForm",
@@ -80,7 +53,7 @@ export default {
 
   apollo: {
     book: {
-      query: REGISTER_INFO_QUERY
+      query: PROGRESS_INFO_QUERY
     }
   },
 
@@ -107,7 +80,7 @@ export default {
       // TODO: date, pageのバリデーションチェックを行う
 
       await this.$apollo.mutate({
-        mutation: PROGRESS_REGISTER_MUTATION,
+        mutation: PROGRESS_REGIST_MUTATION,
         variables: {
           currentPage: this.page,
           readAt: this.date

@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import BookShelf from '../views/BookShelf.vue';
-import BookInfo from '../views/BookInfo.vue';
+import BookShelf from '../views/BookShelf/BookShelf.vue';
+import BookInfo from '../views/BookInfo/BookInfo.vue';
 
 Vue.use(VueRouter);
 

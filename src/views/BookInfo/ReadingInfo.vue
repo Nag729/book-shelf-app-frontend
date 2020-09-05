@@ -8,19 +8,7 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-
-const READING_INFO_QUERY = gql`
-  query {
-    book(id: 1) {
-      id
-      allPages
-      progress {
-        currentPage
-      }
-    }
-  }
-`;
+import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
 
 export default {
   name: "ReadingInfo",
@@ -33,7 +21,7 @@ export default {
 
   apollo: {
     book: {
-      query: READING_INFO_QUERY
+      query: PROGRESS_INFO_QUERY
     }
   },
 
