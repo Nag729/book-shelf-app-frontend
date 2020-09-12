@@ -53,8 +53,6 @@ export const useAuth0 = ({
           await this.auth0Client.handleRedirectCallback();
           this.user = await this.auth0Client.getUser();
           this.isAuthenticated = true;
-          // localStorageにtokenを保存
-          localStorage.setItem('apollo-token', this.getTokenSilently());
         } catch (e) {
           this.error = e;
         } finally {
@@ -110,6 +108,8 @@ export const useAuth0 = ({
         this.isAuthenticated = await this.auth0Client.isAuthenticated();
         this.user = await this.auth0Client.getUser();
         this.loading = false;
+        // localStorageにtokenを保存
+        localStorage.setItem('apollo-token', this.auth0Client.getTokenSilently());
       }
     },
   });
