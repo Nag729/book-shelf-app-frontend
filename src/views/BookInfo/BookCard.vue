@@ -14,7 +14,8 @@
         icon-left="share-variant"
         @click="shareBook"
         class="card-footer-item"
-      >Share</b-button>
+        >Share</b-button
+      >
     </footer>
   </div>
 </template>

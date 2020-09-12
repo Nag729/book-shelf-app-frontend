@@ -18,31 +18,47 @@
         <section class="modal-card-body">
           <!-- Form -->
           <b-field label="Keyword">
-            <b-input v-model="keyword" placeholder="Book Keyword" required></b-input>
+            <b-input
+              v-model="keyword"
+              placeholder="Book Keyword"
+              required
+            ></b-input>
           </b-field>
           <b-field>
             <button class="button is-info" @click="searchBook">Search</button>
           </b-field>
 
           <!-- Books -->
-          <template v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.title">
+          <template
+            v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.title"
+          >
             <h5 class="subtitle is-5 has-text-centered">selected title is</h5>
             <!-- CSSでラインマーカー風にする -->
-            <h4
-              class="title is-4 has-text-centered line-markered"
-            >{{ selectedBook.volumeInfo.title }}</h4>
+            <h4 class="title is-4 has-text-centered line-markered">
+              {{ selectedBook.volumeInfo.title }}
+            </h4>
           </template>
 
           <div class="columns">
-            <div class="column is-4" v-for="book in books" :key="book.id" @click="selectBook(book)">
-              <SingleBook :id="book.id" :image-url="book.volumeInfo.imageLinks.thumbnail"></SingleBook>
+            <div
+              class="column is-4"
+              v-for="book in books"
+              :key="book.id"
+              @click="selectBook(book)"
+            >
+              <SingleBook
+                :id="book.id"
+                :image-url="book.volumeInfo.imageLinks.thumbnail"
+              ></SingleBook>
             </div>
           </div>
         </section>
 
         <!-- Footer -->
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="isLocalActive = false">Close</button>
+          <button class="button" type="button" @click="isLocalActive = false">
+            Close
+          </button>
           <button class="button is-primary" @click="registNewBook">Add</button>
         </footer>
       </div>

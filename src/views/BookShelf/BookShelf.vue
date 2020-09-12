@@ -2,7 +2,9 @@
   <div>
     <section>
       <div class="buttons is-right">
-        <b-button type="is-info" icon-left="plus" @click="openAddDialog">Add</b-button>
+        <b-button type="is-info" icon-left="plus" @click="openAddDialog"
+          >Add</b-button
+        >
       </div>
 
       <BookAddModal :is-active.sync="isActive"></BookAddModal>
@@ -11,7 +13,11 @@
       <!-- TODO: tileで積んで縦幅を揃える -->
       <div class="columns is-multiline">
         <div class="column is-2" v-for="book in allBooks" :key="book.id">
-          <SingleBook :id="book.id" :image-url="book.imageUrl" @card-click="routeDetail"></SingleBook>
+          <SingleBook
+            :id="book.id"
+            :image-url="book.imageUrl"
+            @card-click="routeDetail"
+          ></SingleBook>
         </div>
       </div>
     </section>

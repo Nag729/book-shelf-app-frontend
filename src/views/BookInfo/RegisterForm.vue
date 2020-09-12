@@ -16,7 +16,12 @@
         <!-- Page Number -->
         <div class="column">
           <b-field label="PAGE">
-            <b-numberinput v-model="page" step="5" :min="min" :max="max"></b-numberinput>
+            <b-numberinput
+              v-model="page"
+              step="5"
+              :min="min"
+              :max="max"
+            ></b-numberinput>
           </b-field>
         </div>
       </div>
@@ -24,7 +29,9 @@
         <!-- Register Button -->
         <div class="column">
           <div class="is-pulled-right">
-            <b-button type="is-info" icon-left="book-open" @click="regist">I Read it !</b-button>
+            <b-button type="is-info" icon-left="book-open" @click="regist"
+              >I Read it !</b-button
+            >
           </div>
         </div>
       </div>

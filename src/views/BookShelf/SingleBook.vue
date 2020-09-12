@@ -10,24 +10,24 @@
 
 <script>
 export default {
-  name: 'SingleBook',
+  name: "SingleBook",
 
   props: {
     id: {
       type: String,
-      required: true,
+      required: true
     },
     imageUrl: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
 
   methods: {
     handleClick() {
-      this.$emit('card-click', this.id);
-    },
-  },
+      this.$emit("card-click", this.id);
+    }
+  }
 };
 </script>
 

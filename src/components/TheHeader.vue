@@ -3,15 +3,25 @@
   <b-navbar type="is-light" fixed-top spaced>
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/book-shelf' }">
-        <img src="@/assets/book-icon.png" alt="book icon" />
+        <img id="book-icon" src="@/assets/book-icon.png" alt="book icon" />
       </b-navbar-item>
     </template>
 
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a v-if="!$auth.isAuthenticated" class="button is-primary" @click="login">Log in</a>
-          <a v-if="$auth.isAuthenticated" class="button is-light" @click="logout">Log out</a>
+          <a
+            v-if="!$auth.isAuthenticated"
+            class="button is-primary"
+            @click="login"
+            >Log in</a
+          >
+          <a
+            v-if="$auth.isAuthenticated"
+            class="button is-light"
+            @click="logout"
+            >Log out</a
+          >
         </div>
       </b-navbar-item>
     </template>
