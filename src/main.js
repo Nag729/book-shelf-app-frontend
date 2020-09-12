@@ -38,6 +38,7 @@ Vue.use(Auth0Plugin, {
   }
 });
 
+Vue.config.devtools = true;
 Vue.config.productionTip = false;
 
 new Vue({
