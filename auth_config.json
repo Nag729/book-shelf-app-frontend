@@ -1,4 +1,5 @@
 {
   "domain": "dev-book-shelf.us.auth0.com",
-  "clientId": "cNSUh5NPYwIkpCLquBMHd5UpT8by858e"
+  "clientId": "cNSUh5NPYwIkpCLquBMHd5UpT8by858e",
+  "audience": "https://book-shelf-backend.herokuapp.com"
 }
