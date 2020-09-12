@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
+import { PROGRESS_INFO_QUERY } from '@/graphql/query/progressInfo';
 
 export default {
-  name: "ReadingInfo",
+  name: 'ReadingInfo',
 
   data() {
     return {

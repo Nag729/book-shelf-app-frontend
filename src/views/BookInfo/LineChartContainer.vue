@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import moment from "moment";
-import LineChart from "@/components/LineChart";
-import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
+import moment from 'moment';
+import LineChart from '@/components/LineChart';
+import { PROGRESS_INFO_QUERY } from '@/graphql/query/progressInfo';
 
 export default {
-  name: "LineChartContainer",
+  name: 'LineChartContainer',
 
   components: {
     LineChart
@@ -24,12 +24,12 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Reading Progress",
+            label: 'Reading Progress',
             data: [],
-            backgroundColor: "#BA55D3",
-            borderColor: "#CC99FF",
+            backgroundColor: '#BA55D3',
+            borderColor: '#CC99FF',
             fill: false,
-            type: "line",
+            type: 'line',
             lineTension: 0
           }
         ]
@@ -50,7 +50,7 @@ export default {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Date"
+                labelString: 'Date'
               }
             }
           ],
@@ -58,7 +58,7 @@ export default {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Page"
+                labelString: 'Page'
               },
               // TODO: maxをbook.allPagesにする
               ticks: {
@@ -103,13 +103,13 @@ export default {
 
       // label
       const labels = progress.map(row => {
-        return moment(row["readAt"]).format("MM/DD");
+        return moment(row['readAt']).format('MM/DD');
       });
       this.chartData.labels = labels;
 
       // data
       const pages = progress.map(row => {
-        return row["currentPage"];
+        return row['currentPage'];
       });
       this.chartData.datasets[0].data = pages;
     }

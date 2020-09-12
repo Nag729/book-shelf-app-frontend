@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import { PROGRESS_INFO_QUERY } from "@/graphql/query/progressInfo";
-import { PROGRESS_REGIST_MUTATION } from "@/graphql/mutation/progressRegist";
+import { PROGRESS_INFO_QUERY } from '@/graphql/query/progressInfo';
+import { PROGRESS_REGIST_MUTATION } from '@/graphql/mutation/progressRegist';
 
 export default {
-  name: "RegisterForm",
+  name: 'RegisterForm',
 
   props: {},
 
@@ -110,9 +110,9 @@ export default {
 
       if (!isDateOk || !isPageOk) {
         this.$buefy.dialog.alert({
-          title: "Validation Error",
-          message: "Input Error has occured!",
-          type: "is-danger"
+          title: 'Validation Error',
+          message: 'Input Error has occured!',
+          type: 'is-danger'
         });
         return;
       }
@@ -127,8 +127,8 @@ export default {
       });
 
       this.$buefy.toast.open({
-        message: "Register Success!",
-        type: "is-success"
+        message: 'Register Success!',
+        type: 'is-success'
       });
 
       // re-search

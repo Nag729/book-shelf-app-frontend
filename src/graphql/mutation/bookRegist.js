@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const BOOK_REGIST_MUTATION = gql`
   mutation createBook(

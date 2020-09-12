@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import SingleBook from "./SingleBook";
-import BookAddModal from "./BookAddModal";
-import { ALL_BOOKS_QUERY } from "@/graphql/query/allBooks";
+import SingleBook from './SingleBook';
+import BookAddModal from './BookAddModal';
+import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 
 export default {
-  name: "BookShelf",
+  name: 'BookShelf',
 
   components: {
     SingleBook,
@@ -52,7 +52,7 @@ export default {
 
   methods: {
     routeDetail(id) {
-      this.$router.push({ name: "BookInfo", params: { id: id } });
+      this.$router.push({ name: 'BookInfo', params: { id: id } });
     },
 
     openAddDialog() {

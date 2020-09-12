@@ -6,7 +6,7 @@ import store from './store';
 // UI Component
 import Buefy from 'buefy';
 Vue.use(Buefy, {
-  defaultIconPack: 'mdi',
+  defaultIconPack: 'mdi'
 });
 
 // axios(for Google Books API)
@@ -33,9 +33,13 @@ Vue.use(Auth0Plugin, {
   domain,
   clientId,
   audience,
-  onRedirectCallback: (appState) => {
-    router.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
-  },
+  onRedirectCallback: appState => {
+    router.push(
+      appState && appState.targetUrl
+        ? appState.targetUrl
+        : window.location.pathname
+    );
+  }
 });
 
 Vue.config.productionTip = false;
@@ -44,5 +48,5 @@ new Vue({
   router,
   store,
   apolloProvider: createProvider(),
-  render: (h) => h(App),
+  render: h => h(App)
 }).$mount('#app');

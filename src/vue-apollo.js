@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
+import {
+  createApolloClient,
+  restartWebsockets
+} from 'vue-cli-plugin-apollo/graphql-client';
 
 // Install the vue plugin
 Vue.use(VueApollo);
@@ -9,9 +12,12 @@ Vue.use(VueApollo);
 const AUTH_TOKEN = 'apollo-token';
 
 // Http endpoint
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:3000/graphql';
+const httpEndpoint =
+  process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:3000/graphql';
 // Files URL root
-export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'));
+export const filesRoot =
+  process.env.VUE_APP_FILES_ROOT ||
+  httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'));
 
 Vue.prototype.$filesRoot = filesRoot;
 
@@ -51,7 +57,7 @@ const defaultOptions = {
     } else {
       return '';
     }
-  },
+  }
 
   // Additional ApolloClient options
   // apollo: { ... }
@@ -65,7 +71,7 @@ export function createProvider(options = {}) {
   // Create apollo client
   const { apolloClient, wsClient } = createApolloClient({
     ...defaultOptions,
-    ...options,
+    ...options
   });
   apolloClient.wsClient = wsClient;
 
@@ -75,7 +81,7 @@ export function createProvider(options = {}) {
     defaultOptions: {
       $query: {
         // fetchPolicy: 'cache-and-network',
-      },
+      }
     },
     errorHandler(error) {
       // eslint-disable-next-line no-console
@@ -84,7 +90,7 @@ export function createProvider(options = {}) {
         'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;',
         error.message
       );
-    },
+    }
   });
 
   return apolloProvider;

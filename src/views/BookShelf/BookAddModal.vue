@@ -67,14 +67,14 @@
 </template>
 
 <script>
-import { ALL_BOOKS_QUERY } from "@/graphql/query/allBooks";
-import { BOOK_REGIST_MUTATION } from "@/graphql/mutation/bookRegist";
+import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
+import { BOOK_REGIST_MUTATION } from '@/graphql/mutation/bookRegist';
 
 // TODO: Google Books APIにApollo経由で通信を飛ばす
-import SingleBook from "./SingleBook";
+import SingleBook from './SingleBook';
 
 export default {
-  name: "BookAddModal",
+  name: 'BookAddModal',
 
   components: {
     SingleBook
@@ -89,10 +89,10 @@ export default {
 
   data() {
     return {
-      allBooks: "",
+      allBooks: '',
       books: [],
       selectedBook: {},
-      keyword: ""
+      keyword: ''
     };
   },
 
@@ -118,7 +118,7 @@ export default {
       // Arrange data
       const topItems = response.data.items
         .filter(book => {
-          return book.saleInfo.country === "JP";
+          return book.saleInfo.country === 'JP';
         })
         .filter(book => {
           return (
@@ -144,13 +144,13 @@ export default {
           title: book.volumeInfo.title,
           imageUrl: book.volumeInfo.imageLinks.thumbnail,
           allPages: 100,
-          status: "HAVE"
+          status: 'HAVE'
         }
       });
 
       this.$buefy.toast.open({
-        message: "Register Success!",
-        type: "is-success"
+        message: 'Register Success!',
+        type: 'is-success'
       });
 
       // re-search
@@ -171,9 +171,9 @@ export default {
           // reset data
           this.books = [];
           this.selectedBook = {};
-          this.keyword = "";
+          this.keyword = '';
         }
-        this.$emit("update:isActive", value);
+        this.$emit('update:isActive', value);
       }
     }
   }

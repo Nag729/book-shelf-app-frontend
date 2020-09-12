@@ -26,14 +26,14 @@ export default {
 
   components: {
     TheHeader,
-    TheFooter,
+    TheFooter
   },
 
   computed: {
     hasBackground() {
       return this.$route.name === 'BookShelf';
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -51,44 +51,44 @@ $twitter-invert: findColorInvert($twitter);
 $colors: (
   'white': (
     $white,
-    $black,
+    $black
   ),
   'black': (
     $black,
-    $white,
+    $white
   ),
   'light': (
     $light,
-    $light-invert,
+    $light-invert
   ),
   'dark': (
     $dark,
-    $dark-invert,
+    $dark-invert
   ),
   'primary': (
     $primary,
-    $primary-invert,
+    $primary-invert
   ),
   'info': (
     $info,
-    $info-invert,
+    $info-invert
   ),
   'success': (
     $success,
-    $success-invert,
+    $success-invert
   ),
   'warning': (
     $warning,
-    $warning-invert,
+    $warning-invert
   ),
   'danger': (
     $danger,
-    $danger-invert,
+    $danger-invert
   ),
   'twitter': (
     $twitter,
-    $twitter-invert,
-  ),
+    $twitter-invert
+  )
 );
 
 // Links

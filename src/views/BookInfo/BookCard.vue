@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import { BOOK_INFO_QUERY } from "@/graphql/query/bookInfo";
+import { BOOK_INFO_QUERY } from '@/graphql/query/bookInfo';
 
 export default {
-  name: "BookCard",
+  name: 'BookCard',
 
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
 
   methods: {
     shareBook() {
-      console.log("share!");
+      console.log('share!');
     }
   }
 };

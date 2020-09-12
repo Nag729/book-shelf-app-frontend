@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "SingleBook",
+  name: 'SingleBook',
 
   props: {
     id: {
@@ -25,7 +25,7 @@ export default {
 
   methods: {
     handleClick() {
-      this.$emit("card-click", this.id);
+      this.$emit('card-click', this.id);
     }
   }
 };
