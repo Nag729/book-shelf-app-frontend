@@ -4,12 +4,12 @@ import axios from 'axios';
 import Buefy from 'buefy';
 import Vue from 'vue';
 import VueAxios from 'vue-axios';
+// Import the Auth0 configuration
+import { audience, clientId, domain } from './../auth_config.json';
 // RestLink for the REST API
 // const restLink = new RestLink({
 //   uri: 'https://www.googleapis.com/books/v1/',
 // });
-// Import the Auth0 configuration
-import { audience, clientId, domain } from './../auth_config.json';
 import App from './App.vue';
 // Import the plugin here
 import { Auth0Plugin } from './auth';
