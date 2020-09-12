@@ -1,32 +1,28 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-
-// UI Component
-import Buefy from 'buefy';
-Vue.use(Buefy, {
-  defaultIconPack: 'mdi'
-});
-
 // axios(for Google Books API)
 import axios from 'axios';
+// UI Component
+import Buefy from 'buefy';
+import Vue from 'vue';
 import VueAxios from 'vue-axios';
-Vue.use(VueAxios, axios);
-
-// Vue Apollo
-import { createProvider } from './vue-apollo';
-
 // RestLink for the REST API
 // const restLink = new RestLink({
 //   uri: 'https://www.googleapis.com/books/v1/',
 // });
-
 // Import the Auth0 configuration
-import { domain, clientId, audience } from './../auth_config.json';
-
+import { audience, clientId, domain } from './../auth_config.json';
+import App from './App.vue';
 // Import the plugin here
 import { Auth0Plugin } from './auth';
+import router from './router';
+import store from './store';
+// Vue Apollo
+import { createProvider } from './vue-apollo';
+
+Vue.use(Buefy, {
+  defaultIconPack: 'mdi'
+});
+
+Vue.use(VueAxios, axios);
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {

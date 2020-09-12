@@ -15,5 +15,7 @@
     "plugin:vue/recommended",
     "prettier/vue"
   ],
-  "rules": {}
+  "rules": {
+    "no-undef": "off"
+  }
 }
