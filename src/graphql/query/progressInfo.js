@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const PROGRESS_INFO_QUERY = gql`
   query searchProgress($id: ID!) {

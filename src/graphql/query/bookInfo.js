@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const BOOK_INFO_QUERY = gql`
   query searchBook($id: ID!) {
