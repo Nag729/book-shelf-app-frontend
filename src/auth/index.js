@@ -1,9 +1,8 @@
-import Vue from "vue";
-import createAuth0Client from "@auth0/auth0-spa-js";
+import Vue from 'vue';
+import createAuth0Client from '@auth0/auth0-spa-js';
 
 /** Define a default action to perform after authentication */
-const DEFAULT_REDIRECT_CALLBACK = () =>
-  window.history.replaceState({}, document.title, window.location.pathname);
+const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState({}, document.title, window.location.pathname);
 
 let instance;
 
@@ -27,7 +26,7 @@ export const useAuth0 = ({
         user: {},
         auth0Client: null,
         popupOpen: false,
-        error: null
+        error: null,
       };
     },
     methods: {
@@ -54,6 +53,8 @@ export const useAuth0 = ({
           await this.auth0Client.handleRedirectCallback();
           this.user = await this.auth0Client.getUser();
           this.isAuthenticated = true;
+          // localStorageにtokenを保存
+          localStorage.setItem('apollo-token', this.getTokenSilently());
         } catch (e) {
           this.error = e;
         } finally {
@@ -80,7 +81,7 @@ export const useAuth0 = ({
       /** Logs the user out and removes their session on the authorization server */
       logout(o) {
         return this.auth0Client.logout(o);
-      }
+      },
     },
     /** Use this lifecycle method to instantiate the SDK client */
     async created() {
@@ -89,15 +90,12 @@ export const useAuth0 = ({
         domain: options.domain,
         client_id: options.clientId,
         audience: options.audience,
-        redirect_uri: redirectUri
+        redirect_uri: redirectUri,
       });
 
       try {
         // If the user is returning to the app after authentication..
-        if (
-          window.location.search.includes("code=") &&
-          window.location.search.includes("state=")
-        ) {
+        if (window.location.search.includes('code=') && window.location.search.includes('state=')) {
           // handle the redirect and retrieve tokens
           const { appState } = await this.auth0Client.handleRedirectCallback();
 
@@ -113,7 +111,7 @@ export const useAuth0 = ({
         this.user = await this.auth0Client.getUser();
         this.loading = false;
       }
-    }
+    },
   });
 
   return instance;
@@ -123,5 +121,5 @@ export const useAuth0 = ({
 export const Auth0Plugin = {
   install(Vue, options) {
     Vue.prototype.$auth = useAuth0(options);
-  }
+  },
 };
