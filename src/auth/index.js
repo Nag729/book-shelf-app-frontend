@@ -109,7 +109,8 @@ export const useAuth0 = ({
         this.user = await this.auth0Client.getUser();
         this.loading = false;
         // localStorageにtokenを保存
-        localStorage.setItem('apollo-token', this.auth0Client.getTokenSilently());
+        const token = await this.auth0Client.getTokenSilently();
+        localStorage.setItem('apollo-token', token);
       }
     },
   });
