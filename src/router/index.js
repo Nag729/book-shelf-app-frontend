@@ -1,10 +1,9 @@
+import { authGuard } from '@/auth/authGuard';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { authGuard } from '@/auth/authGuard';
-
-import Home from '../views/Home.vue';
-import BookShelf from '../views/BookShelf/BookShelf.vue';
 import BookInfo from '../views/BookInfo/BookInfo.vue';
+import BookShelf from '../views/BookShelf/BookShelf.vue';
+import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -25,6 +24,10 @@ const routes = [
     name: 'BookInfo',
     component: BookInfo,
     beforeEnter: authGuard
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ];
 
