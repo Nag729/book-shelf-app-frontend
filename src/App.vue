@@ -18,28 +18,28 @@
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader";
-import TheFooter from "@/components/TheFooter";
+import TheHeader from '@/components/TheHeader';
+import TheFooter from '@/components/TheFooter';
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
   },
 
   computed: {
     hasBackground() {
-      return this.$route.name === "BookShelf";
-    }
-  }
+      return this.$route.name === 'BookShelf';
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 // Import Bulma's core
-@import "~bulma/sass/utilities/_all";
+@import '~bulma/sass/utilities/_all';
 
 // Set your colors
 $primary: #8c67ef;
@@ -49,46 +49,46 @@ $twitter-invert: findColorInvert($twitter);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
-  "white": (
+  'white': (
     $white,
-    $black
-  ),
-  "black": (
     $black,
-    $white
   ),
-  "light": (
+  'black': (
+    $black,
+    $white,
+  ),
+  'light': (
     $light,
-    $light-invert
+    $light-invert,
   ),
-  "dark": (
+  'dark': (
     $dark,
-    $dark-invert
+    $dark-invert,
   ),
-  "primary": (
+  'primary': (
     $primary,
-    $primary-invert
+    $primary-invert,
   ),
-  "info": (
+  'info': (
     $info,
-    $info-invert
+    $info-invert,
   ),
-  "success": (
+  'success': (
     $success,
-    $success-invert
+    $success-invert,
   ),
-  "warning": (
+  'warning': (
     $warning,
-    $warning-invert
+    $warning-invert,
   ),
-  "danger": (
+  'danger': (
     $danger,
-    $danger-invert
+    $danger-invert,
   ),
-  "twitter": (
+  'twitter': (
     $twitter,
-    $twitter-invert
-  )
+    $twitter-invert,
+  ),
 );
 
 // Links
@@ -97,8 +97,8 @@ $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
 
 .sf-site-all {
   min-height: 100vh; /* 全体の高さを最低でもビューポートの100%にする */
@@ -111,7 +111,7 @@ $link-focus-border: $primary;
 }
 
 .has-background {
-  background-image: url("/shelf-background.jpg");
+  background-image: url('/shelf-background.jpg');
 }
 
 .site-content {

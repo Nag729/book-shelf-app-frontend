@@ -5,9 +5,7 @@
         <div class="hero-body">
           <div class="container has-text-centered">
             <h2 class="title">Log in with Google Account.</h2>
-            <b-button size="is-medium" icon-left="shield-plus" @click="login"
-              >Log in</b-button
-            >
+            <b-button size="is-medium" icon-left="shield-plus" @click="login">Log in</b-button>
           </div>
         </div>
       </section>
@@ -30,12 +28,12 @@
 
 <script>
 export default {
-  name: "Home",
+  name: 'Home',
 
   methods: {
     async login() {
       await this.$auth.loginWithRedirect();
-    }
-  }
+    },
+  },
 };
 </script>
