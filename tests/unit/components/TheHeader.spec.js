@@ -1,33 +1,48 @@
-// TODO: Jestのグローバル設定ファイルを作成
-// https://github.com/buefy/buefy/issues/1249
-// TODO: Buefyの設定を入れる
-// TODO: auth0のエラーを解消
+import TheHeader from '@/components/TheHeader.vue';
+import { shallowMount } from '@vue/test-utils';
 
-import Vue from "vue";
-// Import the Auth0 configuration
-import { domain, clientId } from "../../../auth_config.json";
-// Import the plugin here
-import { Auth0Plugin } from "../../../src/auth";
-// Install the authentication plugin here
-Vue.use(Auth0Plugin, {
-  domain,
-  clientId,
-  onRedirectCallback: appState => {
-    router.push(
-      appState && appState.targetUrl
-        ? appState.targetUrl
-        : window.location.pathname
-    );
-  }
-});
-
-import { shallowMount } from "@vue/test-utils";
-import TheHeader from "@/components/TheHeader.vue";
-
-describe("TheHeader.vue", () => {
-  it("render contents", () => {
+describe('TheHeader.vue', () => {
+  it('render static contents', () => {
     const wrapper = shallowMount(TheHeader);
-    // #book-icon というimageが1件存在すること
-    expect(wrapper.findAll("#book-icon").length).toBe(1);
+    // Link, Buttonが存在すること
+    expect(wrapper.find('#book-icon').exists()).toBe(true);
+    expect(wrapper.find('#home-link').exists()).toBe(true);
+    expect(wrapper.find('#book-shelf-link').exists()).toBe(true);
   });
+
+  it('render contents under Not Authenticated', () => {
+    const $auth = {
+      isAuthenticated: false
+    };
+    const wrapper = shallowMount(TheHeader, {
+      mocks: {
+        $auth
+      }
+    });
+
+    // 未認証の場合、Log inボタンが表示されること
+    expect($auth.isAuthenticated).toBe(false);
+    expect(wrapper.find('#login').exists()).toBe(true);
+    // Log outボタンが非表示であること
+    expect(wrapper.find('#logout').exists()).toBe(false);
+  });
+
+  it('render contents under Authenticated', () => {
+    const $auth = {
+      isAuthenticated: true
+    };
+    const wrapper = shallowMount(TheHeader, {
+      mocks: {
+        $auth
+      }
+    });
+
+    // 認証済みの場合、Log inボタンが非表示であること
+    expect($auth.isAuthenticated).toBe(true);
+    expect(wrapper.find('#login').exists()).toBe(false);
+    // Log outボタンが非表示であること
+    expect(wrapper.find('#logout').exists()).toBe(true);
+  });
+
+  // TODO: test login() & logout()
 });

@@ -1,11 +1,15 @@
 <template>
   <div class="home">
     <div v-if="!$auth.isAuthenticated">
-      <section class="hero is-medium is-info is-bold">
+      <section class="hero is-large is-bold">
         <div class="hero-body">
           <div class="container has-text-centered">
-            <h2 class="title">Log in with Google Account.</h2>
-            <b-button size="is-medium" icon-left="shield-plus" @click="login"
+            <h2 class="title has-text-white">Log in with Google Account.</h2>
+            <b-button
+              size="is-medium"
+              icon-left="shield-plus"
+              type="is-info"
+              @click="login"
               >Log in</b-button
             >
           </div>
@@ -14,16 +18,34 @@
     </div>
 
     <div v-if="$auth.isAuthenticated">
-      <h1>ログインしてくれてありがとう！</h1>
-      <div>
-        <img :src="$auth.user.picture" />
-        <h2>{{ $auth.user.name }}</h2>
-        <p>{{ $auth.user.email }}</p>
-      </div>
-
-      <div>
-        <pre>{{ JSON.stringify($auth.user, null, 2) }}</pre>
-      </div>
+      <section class="hero is-medium is-bold">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <h2 class="title has-text-white">
+              Welcome {{ $auth.user.nickname }}!
+            </h2>
+            <div>
+              <b-image
+                :src="$auth.user.picture"
+                alt="User Icon"
+                ratio="1by1"
+                :rounded="true"
+              ></b-image>
+              <br />
+            </div>
+            <div>
+              <b-button
+                type="is-info"
+                icon-left="book"
+                tag="router-link"
+                to="/book-shelf"
+              >
+                Go To Book Shelf
+              </b-button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
