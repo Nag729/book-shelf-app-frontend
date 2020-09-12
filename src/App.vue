@@ -31,7 +31,8 @@ export default {
 
   computed: {
     hasBackground() {
-      return this.$route.name === 'BookShelf';
+      const isTarget = ['BookShelf', 'BookInfo'];
+      return isTarget.indexOf(this.$route.name) !== -1;
     }
   }
 };
@@ -123,14 +124,31 @@ $link-focus-border: $primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  // text-align: center;
+  /* https://uigradients.com/#Radar */
+  background: #a770ef; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #fdb99b,
+    #cf8bf3,
+    #a770ef
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #fdb99b,
+    #cf8bf3,
+    #a770ef
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
   }
+}
+
+/* for chart-js */
+canvas {
+  background-color: white;
 }
 </style>
