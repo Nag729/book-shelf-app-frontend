@@ -8,7 +8,7 @@
     aria-modal
   >
     <form @submit.prevent>
-      <div class="modal-card" style="width: auto">
+      <div class="modal-card">
         <!-- Header -->
         <header class="modal-card-head">
           <p class="modal-card-title">Add A Book!</p>
@@ -29,28 +29,36 @@
           </b-field>
 
           <!-- Books -->
-          <template
-            v-if="selectedBook.volumeInfo && selectedBook.volumeInfo.title"
-          >
-            <h5 class="subtitle is-5 has-text-centered">selected title is</h5>
-            <!-- CSSでラインマーカー風にする -->
-            <h4 class="title is-4 has-text-centered line-markered">
+          <h5 class="title is-5 has-text-centered has-text-info">
+            <template v-if="isSelectBook">
               {{ selectedBook.volumeInfo.title }}
-            </h4>
-          </template>
+            </template>
+            <template v-else>
+              <b-skeleton height="5vh"></b-skeleton>
+            </template>
+          </h5>
 
-          <div class="columns">
-            <div
-              class="column is-4"
-              v-for="book in books"
-              :key="book.id"
-              @click="selectBook(book)"
-            >
-              <SingleBook
-                :id="book.id"
-                :image-url="book.volumeInfo.imageLinks.thumbnail"
-              ></SingleBook>
-            </div>
+          <div class="columns book-space">
+            <template v-if="books ? books.length > 0 : false">
+              <div
+                class="column is-4 search-books"
+                @click="selectBook(book)"
+                v-for="book in books"
+                :key="book.id"
+              >
+                <div>
+                  <SingleBook
+                    :id="book.id"
+                    :image-url="book.volumeInfo.imageLinks.thumbnail"
+                  ></SingleBook>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="column is-4" v-for="n in 3" :key="n">
+                <b-skeleton height="35vh"></b-skeleton>
+              </div>
+            </template>
           </div>
         </section>
 
@@ -59,7 +67,13 @@
           <button class="button" type="button" @click="isLocalActive = false">
             Close
           </button>
-          <button class="button is-primary" @click="registNewBook">Add</button>
+          <button
+            class="button is-primary"
+            :disabled="!isSelectBook"
+            @click="registNewBook"
+          >
+            Add
+          </button>
         </footer>
       </div>
     </form>
@@ -175,13 +189,22 @@ export default {
         }
         this.$emit('update:isActive', value);
       }
+    },
+
+    isSelectBook() {
+      const volumeInfo = this.selectedBook.volumeInfo;
+      return volumeInfo && volumeInfo.title;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.line-markered {
-  background: linear-gradient(transparent 60%, #ff8 60%);
+.book-space {
+  height: 40vh;
+}
+
+.search-books {
+  height: 35vh;
 }
 </style>
