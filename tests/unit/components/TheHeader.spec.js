@@ -1,48 +1,61 @@
 import TheHeader from '@/components/TheHeader.vue';
 import { shallowMount } from '@vue/test-utils';
 
+const factory = (isAuth = true) => {
+  const $auth = {
+    isAuthenticated: isAuth
+  };
+  return shallowMount(TheHeader, {
+    mocks: {
+      $auth
+    }
+  });
+};
+
 describe('TheHeader.vue', () => {
   it('render static contents', () => {
-    const wrapper = shallowMount(TheHeader);
-    // Link, Buttonが存在すること
-    expect(wrapper.find('#book-icon').exists()).toBe(true);
-    expect(wrapper.find('#home-link').exists()).toBe(true);
-    expect(wrapper.find('#book-shelf-link').exists()).toBe(true);
+    const wrapper = factory();
+
+    // Brand Icon
+    const brandIcon = wrapper.find('#book-icon');
+    expect(brandIcon.exists()).toBe(true);
+
+    // Home Link
+    const homeLink = wrapper.find('#home-link');
+    expect(homeLink.exists()).toBe(true);
+
+    // BookShelf Link
+    const bookShelfLink = wrapper.find('#book-shelf-link');
+    expect(bookShelfLink.exists()).toBe(true);
   });
 
   it('render contents under Not Authenticated', () => {
-    const $auth = {
-      isAuthenticated: false
-    };
-    const wrapper = shallowMount(TheHeader, {
-      mocks: {
-        $auth
-      }
-    });
+    const wrapper = factory(false);
+    expect(wrapper.vm.$auth.isAuthenticated).toBe(false);
 
     // 未認証の場合、Log inボタンが表示されること
-    expect($auth.isAuthenticated).toBe(false);
-    expect(wrapper.find('#login').exists()).toBe(true);
+    const loginButton = wrapper.find('#login');
+    expect(loginButton.exists()).toBe(true);
+    expect(loginButton.classes()).toContain('button');
+    expect(loginButton.classes()).toContain('is-info');
+
     // Log outボタンが非表示であること
-    expect(wrapper.find('#logout').exists()).toBe(false);
+    const logoutButton = wrapper.find('#logout');
+    expect(logoutButton.exists()).toBe(false);
   });
 
   it('render contents under Authenticated', () => {
-    const $auth = {
-      isAuthenticated: true
-    };
-    const wrapper = shallowMount(TheHeader, {
-      mocks: {
-        $auth
-      }
-    });
+    const wrapper = factory(true);
+    expect(wrapper.vm.$auth.isAuthenticated).toBe(true);
 
     // 認証済みの場合、Log inボタンが非表示であること
-    expect($auth.isAuthenticated).toBe(true);
-    expect(wrapper.find('#login').exists()).toBe(false);
-    // Log outボタンが非表示であること
-    expect(wrapper.find('#logout').exists()).toBe(true);
-  });
+    const loginButton = wrapper.find('#login');
+    expect(loginButton.exists()).toBe(false);
 
-  // TODO: test login() & logout()
+    // Log outボタンが表示されること
+    const logoutButton = wrapper.find('#logout');
+    expect(logoutButton.exists()).toBe(true);
+    expect(logoutButton.classes()).toContain('button');
+    expect(logoutButton.classes()).toContain('is-info');
+  });
 });

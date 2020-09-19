@@ -1,6 +1,7 @@
 <template>
   <!-- Navbar -->
   <b-navbar type="is-light" fixed-top spaced>
+    <!-- Brand Icon -->
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/book-shelf' }">
         <img id="book-icon" src="@/assets/book-icon.png" alt="book icon" />
@@ -8,9 +9,11 @@
     </template>
 
     <template slot="start">
+      <!-- Home -->
       <b-navbar-item id="home-link" tag="router-link" :to="{ path: '/' }">
         Home
       </b-navbar-item>
+      <!-- BookShelf -->
       <b-navbar-item
         id="book-shelf-link"
         tag="router-link"
@@ -23,6 +26,7 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
+          <!-- Login -->
           <a
             id="login"
             v-if="!$auth.isAuthenticated"
@@ -30,6 +34,7 @@
             @click="login"
             >Log in</a
           >
+          <!-- Logout -->
           <a
             id="logout"
             v-if="$auth.isAuthenticated"

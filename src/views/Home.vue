@@ -4,7 +4,7 @@
       <section class="hero is-large is-bold">
         <div class="hero-body">
           <div class="container has-text-centered">
-            <h2 class="title has-text-white">Log in with Google Account.</h2>
+            <h2 class="title has-text-white">Log in with GitHub Account.</h2>
             <b-button
               size="is-medium"
               icon-left="shield-plus"
