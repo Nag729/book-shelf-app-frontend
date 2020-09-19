@@ -5,6 +5,13 @@ import BookInfo from '../views/BookInfo/BookInfo.vue';
 import BookShelf from '../views/BookShelf/BookShelf.vue';
 import Home from '../views/Home.vue';
 
+// avoid NavigationDuplicated
+// https://stackoverflow.com/questions/57837758/navigationduplicated-navigating-to-current-location-search-is-not-allowed
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
+
 Vue.use(VueRouter);
 
 const routes = [
