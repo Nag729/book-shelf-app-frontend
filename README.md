@@ -1,5 +1,7 @@
 # book-shelf-app-frontend
 
+https://book-shelfy.netlify.app/#/
+
 ## setup
 
 ```bash
