@@ -28,16 +28,16 @@
         <div class="buttons">
           <!-- Login -->
           <a
-            id="login"
             v-if="!$auth.isAuthenticated"
+            id="login"
             class="button is-info"
             @click="login"
             >Log in</a
           >
           <!-- Logout -->
           <a
-            id="logout"
             v-if="$auth.isAuthenticated"
+            id="logout"
             class="button is-info"
             @click="logout"
             >Log out</a

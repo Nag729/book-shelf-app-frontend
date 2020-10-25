@@ -12,8 +12,8 @@
       <b-button
         type="is-info"
         icon-left="share-variant"
-        @click="shareBook"
         class="card-footer-item"
+        @click="shareBook"
         >Share</b-button
       >
     </footer>

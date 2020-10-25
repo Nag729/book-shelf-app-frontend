@@ -6,10 +6,10 @@
         <div class="column">
           <b-field label="DATE">
             <b-datepicker
+              v-model="date"
               placeholder="Click to select..."
               icon="calendar-today"
               trap-focus
-              v-model="date"
             ></b-datepicker>
           </b-field>
         </div>

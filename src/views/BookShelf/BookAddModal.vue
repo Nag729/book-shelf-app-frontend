@@ -41,10 +41,10 @@
           <div class="columns book-space">
             <template v-if="books ? books.length > 0 : false">
               <div
-                class="column is-4 search-books"
-                @click="selectBook(book)"
                 v-for="book in books"
                 :key="book.id"
+                class="column is-4 search-books"
+                @click="selectBook(book)"
               >
                 <div>
                   <SingleBook
@@ -55,7 +55,7 @@
               </div>
             </template>
             <template v-else>
-              <div class="column is-4" v-for="n in 3" :key="n">
+              <div v-for="n in 3" :key="n" class="column is-4">
                 <b-skeleton height="35vh"></b-skeleton>
               </div>
             </template>
@@ -116,6 +116,28 @@ export default {
     }
   },
 
+  computed: {
+    isLocalActive: {
+      get() {
+        return this.isActive;
+      },
+      set(value) {
+        if (!value) {
+          // reset data
+          this.books = [];
+          this.selectedBook = {};
+          this.keyword = '';
+        }
+        this.$emit('update:isActive', value);
+      }
+    },
+
+    isSelectBook() {
+      const volumeInfo = this.selectedBook.volumeInfo;
+      return volumeInfo && volumeInfo.title;
+    }
+  },
+
   methods: {
     async searchBook() {
       // TODO: Do Title Validation
@@ -172,28 +194,6 @@ export default {
 
       // close the modal
       this.isLocalActive = false;
-    }
-  },
-
-  computed: {
-    isLocalActive: {
-      get() {
-        return this.isActive;
-      },
-      set(value) {
-        if (!value) {
-          // reset data
-          this.books = [];
-          this.selectedBook = {};
-          this.keyword = '';
-        }
-        this.$emit('update:isActive', value);
-      }
-    },
-
-    isSelectBook() {
-      const volumeInfo = this.selectedBook.volumeInfo;
-      return volumeInfo && volumeInfo.title;
     }
   }
 };
