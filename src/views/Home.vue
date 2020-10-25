@@ -24,7 +24,7 @@
             <h2 class="title has-text-white">
               Welcome {{ $auth.user.nickname }}!
             </h2>
-            <div>
+            <div class="user-icon">
               <b-image
                 :src="$auth.user.picture"
                 alt="User Icon"
@@ -61,3 +61,15 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.user-icon {
+  width: 20%;
+  margin: 0 auto;
+}
+</style>

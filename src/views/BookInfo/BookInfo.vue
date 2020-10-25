@@ -1,20 +1,22 @@
 <template>
   <div>
     <section>
-      <div class="columns">
-        <div class="column is-one-third">
-          <!-- picture -->
-          <BookCard></BookCard>
-        </div>
-        <div class="column">
-          <!-- Reading info -->
-          <ReadingInfo></ReadingInfo>
+      <div class="info-container">
+        <div class="columns">
+          <div class="column is-one-third">
+            <!-- picture -->
+            <BookCard></BookCard>
+          </div>
+          <div class="column">
+            <!-- Reading info -->
+            <ReadingInfo></ReadingInfo>
 
-          <!-- line chart -->
-          <LineChartContainer></LineChartContainer>
+            <!-- line chart -->
+            <LineChartContainer></LineChartContainer>
 
-          <!-- Forms -->
-          <RegisterForm></RegisterForm>
+            <!-- Forms -->
+            <RegisterForm></RegisterForm>
+          </div>
         </div>
       </div>
     </section>
@@ -38,3 +40,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.info-container {
+  width: 80%;
+  margin: 0 auto;
+}
+</style>

@@ -10,14 +10,15 @@
       <BookAddModal :is-active.sync="isActive"></BookAddModal>
 
       <!-- BookShelf -->
-      <!-- TODO: tileで積んで縦幅を揃える -->
-      <div class="columns is-multiline">
-        <div class="column is-2" v-for="book in allBooks" :key="book.id">
-          <SingleBook
-            :id="book.id"
-            :image-url="book.imageUrl"
-            @card-click="routeDetail"
-          ></SingleBook>
+      <div class="shelf-container">
+        <div class="columns is-multiline">
+          <div v-for="book in allBooks" :key="book.id" class="column is-2">
+            <SingleBook
+              :id="book.id"
+              :image-url="book.imageUrl"
+              @card-click="routeDetail"
+            ></SingleBook>
+          </div>
         </div>
       </div>
     </section>
@@ -62,3 +63,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.shelf-container {
+  width: 80%;
+  margin: 0 auto;
+}
+</style>

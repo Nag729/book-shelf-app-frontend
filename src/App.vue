@@ -108,6 +108,7 @@ $link-focus-border: $primary;
 }
 
 .sf-site-content {
+  width: 100%;
   flex: 1; /* flexに1つだけ数値を指定するとその要素は伸びる */
 }
 
