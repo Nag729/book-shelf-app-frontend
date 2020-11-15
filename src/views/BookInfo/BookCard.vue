@@ -48,9 +48,12 @@ export default {
 
     confirmDelete() {
       this.$buefy.dialog.confirm({
-        message: 'Are you sure delete?',
+        message: 'Are you sure to DELETE?',
         onConfirm: () => {
-          this.$buefy.toast.open('delete the book.');
+          this.$buefy.toast.open({
+            message: 'Delete Success!',
+            type: 'is-success'
+          });
           this.deleteBook();
         }
       });
