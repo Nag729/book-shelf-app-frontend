@@ -27,7 +27,7 @@
 
 <script>
 import SingleBook from './SingleBook';
-import BookAddModal from './BookAddModal';
+import BookAddModal from '@/views/BookAddModal/BookAddModal';
 import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 
 export default {

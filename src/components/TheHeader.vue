@@ -38,7 +38,7 @@
           <a
             v-if="$auth.isAuthenticated"
             id="logout"
-            class="button is-info"
+            class="button"
             @click="logout"
             >Log out</a
           >
