@@ -1,27 +1,25 @@
 <template>
-  <div class="card">
-    <div class="card-image">
-      <figure class="image">
-        <img :src="book.imageUrl" alt="Placeholder image" />
-      </figure>
+  <div>
+    <div class="card">
+      <div class="card-image">
+        <figure class="image">
+          <img :src="book.imageUrl" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content">{{ book.title }}</div>
+      </div>
     </div>
-    <div class="card-content">
-      <div class="content">{{ book.title }}</div>
+    <div>
+      <b-button type="is-danger" icon-right="delete" @click="confirmDelete" />
     </div>
-    <footer class="card-footer">
-      <b-button
-        type="is-info"
-        icon-left="share-variant"
-        class="card-footer-item"
-        @click="shareBook"
-        >Share</b-button
-      >
-    </footer>
   </div>
 </template>
 
 <script>
+import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 import { BOOK_INFO_QUERY } from '@/graphql/query/bookInfo';
+import { BOOK_DELETE_MUTATION } from '@/graphql/mutation/bookDelete';
 
 export default {
   name: 'BookCard',
@@ -46,6 +44,35 @@ export default {
   methods: {
     shareBook() {
       console.log('share!');
+    },
+
+    confirmDelete() {
+      this.$buefy.dialog.confirm({
+        message: 'Are you sure delete?',
+        onConfirm: () => {
+          this.$buefy.toast.open('delete the book.');
+          this.deleteBook();
+        }
+      });
+    },
+
+    async deleteBook() {
+      await this.$apollo.mutate({
+        mutation: BOOK_DELETE_MUTATION,
+        variables: {
+          id: this.book.id
+        },
+        update: store => {
+          const deletedBookId = this.book.id;
+          const data = store.readQuery({ query: ALL_BOOKS_QUERY });
+
+          data.allBooks = data.allBooks.filter(
+            book => book.id !== deletedBookId
+          );
+          store.writeQuery({ query: ALL_BOOKS_QUERY, data });
+        }
+      });
+      this.$router.push({ name: 'BookShelf' });
     }
   }
 };
