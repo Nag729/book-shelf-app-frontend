@@ -33,12 +33,15 @@ const routes = [
     beforeEnter: authGuard
   },
   {
+    // 404 handling
     path: '*',
     redirect: '/'
   }
 ];
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 });
 
