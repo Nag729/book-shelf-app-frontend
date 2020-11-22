@@ -9,8 +9,8 @@
           </b-button>
         </div>
       </div>
-
-      <BookAddModal :is-active.sync="isActive"></BookAddModal>
+      <!-- Book Add Modal (Regist mode) -->
+      <BookAddModal :is-active.sync="isModalActive"></BookAddModal>
 
       <!-- BookShelf -->
       <div class="shelf-container">
@@ -30,7 +30,7 @@
 
 <script>
 import SingleBook from './SingleBook';
-import BookAddModal from './BookAddModal';
+import BookAddModal from '@/views/BookAddModal/BookAddModal';
 import Velocity from './Velocity';
 import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       allBooks: [],
-      isActive: false
+      isModalActive: false
     };
   },
 
@@ -61,9 +61,9 @@ export default {
       this.$router.push({ name: 'BookInfo', params: { id: id } });
     },
 
+    // open modal
     openAddDialog() {
-      // show modal
-      this.isActive = true;
+      this.isModalActive = true;
     }
   }
 };

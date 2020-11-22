@@ -29,7 +29,7 @@
         <!-- Register Button -->
         <div class="column">
           <div class="is-pulled-right">
-            <b-button type="is-info" icon-left="book-open" @click="regist"
+            <b-button type="is-primary" icon-left="book-open" @click="regist"
               >I Read it !</b-button
             >
           </div>
