@@ -6,6 +6,11 @@ export const ALL_BOOKS_QUERY = gql`
       id
       title
       imageUrl
+      progress {
+        id
+        currentPage
+        readAt
+      }
     }
   }
 `;
