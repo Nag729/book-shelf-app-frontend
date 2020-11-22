@@ -12,7 +12,9 @@
             <ReadingInfo></ReadingInfo>
 
             <!-- line chart -->
-            <LineChartContainer></LineChartContainer>
+            <div class="line-chart">
+              <LineChartContainer></LineChartContainer>
+            </div>
 
             <!-- Forms -->
             <RegisterForm></RegisterForm>
@@ -45,5 +47,9 @@ export default {
 .info-container {
   width: 80%;
   margin: 0 auto;
+}
+
+.line-chart {
+  margin: 2% 0;
 }
 </style>
