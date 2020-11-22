@@ -6,6 +6,8 @@ export const BOOK_INFO_QUERY = gql`
       id
       title
       imageUrl
+      allPages
+      status
     }
   }
 `;
