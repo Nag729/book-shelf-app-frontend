@@ -171,8 +171,8 @@ export default {
       const variables = {
         title: book.volumeInfo.title,
         imageUrl: book.volumeInfo.imageLinks.thumbnail,
-        allPages: 100,
-        status: 'HAVE'
+        allPages: 300,
+        status: 'WISH'
       };
 
       await this.$apollo.mutate({
