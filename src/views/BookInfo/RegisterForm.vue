@@ -90,28 +90,37 @@ export default {
 
     async regist() {
       // Validation Check
-      const inputDate = new Date(this.date);
-      let isDateOk;
-      let isPageOk;
+      const progress = this.book.progress;
+      const hasProgress = progress.length > 0;
 
-      if (this.book.progress.length > 0) {
-        const lastProgress = this.book.progress.slice(-1)[0];
-        const lastDate = new Date(lastProgress.readAt);
-        const lastPage = lastProgress.currentPage;
+      // Date Validation
+      const typedDate = new Date(this.date);
+      const isTypedDateAfterToday = typedDate.getDate() > new Date().getDate();
+      const isTypedDateBeforeLast =
+        hasProgress &&
+        new Date(progress[progress.length - 1].readAt).getDate() >
+          typedDate.getDate();
 
-        isDateOk =
-          lastDate.getDate() <= inputDate.getDate() &&
-          inputDate.getDate() <= new Date().getDate();
-        isPageOk = lastPage < this.page && this.page <= this.max;
-      } else {
-        isDateOk = inputDate.getDate() <= new Date().getDate();
-        isPageOk = 0 < this.page && this.page <= this.max;
+      if (isTypedDateAfterToday || isTypedDateBeforeLast) {
+        this.$buefy.dialog.alert({
+          title: 'Date Validation Error',
+          message: 'Typed Date is invalid!',
+          type: 'is-danger'
+        });
+        return;
       }
 
-      if (!isDateOk || !isPageOk) {
+      // Page Validation
+      const lastPage = hasProgress
+        ? progress[progress.length - 1].currentPage
+        : 0;
+      const isTypedPageLargerAllPages = this.page > this.max;
+      const isTypedPageSmallerLast = lastPage > this.page;
+
+      if (isTypedPageLargerAllPages || isTypedPageSmallerLast) {
         this.$buefy.dialog.alert({
-          title: 'Validation Error',
-          message: 'Input Error has occured!',
+          title: 'Page Validation Error',
+          message: 'Typed Page is invalid!',
           type: 'is-danger'
         });
         return;
