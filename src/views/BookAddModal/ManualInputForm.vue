@@ -25,7 +25,13 @@
         </b-field>
         <!-- Status -->
         <b-field label="Status">
-          <b-select placeholder="Status" icon="check" required expanded>
+          <b-select
+            v-model="status"
+            placeholder="Status"
+            icon="check"
+            required
+            expanded
+          >
             <template v-for="o in statusOption">
               <option :key="o" :value="o">{{ o }}</option>
             </template>
