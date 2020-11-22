@@ -21,6 +21,7 @@
     "buefy": "^0.9.3",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
+    "dayjs": "^1.9.6",
     "graphql": "^15.3.0",
     "graphql-anywhere": "^4.2.7",
     "graphql-tag": "^2.11.0",
