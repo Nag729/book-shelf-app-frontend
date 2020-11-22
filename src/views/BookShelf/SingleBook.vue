@@ -1,9 +1,7 @@
 <template>
   <div class="card" @click="handleClick">
     <a>
-      <figure class="image">
-        <img :src="imageUrl" />
-      </figure>
+      <b-image :src="imageUrl"> </b-image>
     </a>
   </div>
 </template>

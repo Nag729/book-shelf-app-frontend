@@ -14,9 +14,7 @@
           <b-button type="is-info" icon-left="pen" @click="openEditModal" />
         </div>
         <!-- Image -->
-        <figure class="image">
-          <img :src="book.imageUrl" alt="Placeholder image" />
-        </figure>
+        <b-image :src="book.imageUrl"> </b-image>
       </div>
       <div class="card-content">
         <!-- Title -->
@@ -56,6 +54,16 @@ export default {
         return {
           id: this.$route.params.id
         };
+      }
+    }
+  },
+
+  watch: {
+    '$apollo.loading'(val) {
+      if (val) {
+        this.$store.commit('displayLoading');
+      } else {
+        this.$store.commit('hideLoading');
       }
     }
   },

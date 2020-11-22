@@ -51,6 +51,16 @@ export default {
     }
   },
 
+  watch: {
+    '$apollo.loading'(val) {
+      if (val) {
+        this.$store.commit('displayLoading');
+      } else {
+        this.$store.commit('hideLoading');
+      }
+    }
+  },
+
   methods: {
     routeDetail(id) {
       this.$router.push({ name: 'BookInfo', params: { id: id } });
