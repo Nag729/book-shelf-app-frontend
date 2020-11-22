@@ -83,7 +83,6 @@
 <script>
 import { BOOK_REGIST_MUTATION } from '@/graphql/mutation/bookRegist';
 
-// TODO: [WANT] Google Books APIにApollo経由で通信を飛ばす
 import SingleBook from '@/views/BookShelf/SingleBook';
 
 export default {
@@ -128,6 +127,7 @@ export default {
      * search books through Google Books API.
      * https://developers.google.com/books/docs/v1/using
      */
+    // TODO: [WANT] Google Books APIにApollo経由で通信を飛ばす
     async searchBook() {
       // check validation
       const isValid = this.$refs.inputForm.reportValidity();
@@ -171,8 +171,8 @@ export default {
       const variables = {
         title: book.volumeInfo.title,
         imageUrl: book.volumeInfo.imageLinks.thumbnail,
-        allPages: 100,
-        status: 'HAVE'
+        allPages: 300,
+        status: 'WISH'
       };
 
       await this.$apollo.mutate({

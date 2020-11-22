@@ -28,7 +28,6 @@
 <script>
 import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 
-// TODO: Google Books APIにApollo経由で通信を飛ばす
 import SearchInputForm from './SearchInputForm';
 import ManualInputForm from './ManualInputForm';
 

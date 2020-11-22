@@ -25,7 +25,13 @@
         </b-field>
         <!-- Status -->
         <b-field label="Status">
-          <b-select placeholder="Status" icon="check" required expanded>
+          <b-select
+            v-model="status"
+            placeholder="Status"
+            icon="check"
+            required
+            expanded
+          >
             <template v-for="o in statusOption">
               <option :key="o" :value="o">{{ o }}</option>
             </template>
@@ -38,11 +44,7 @@
         <button class="button" type="button" @click="emitClose">
           Close
         </button>
-        <button
-          class="button is-primary"
-          :disabled="!isFormValidate"
-          @click="registNewBook"
-        >
+        <button class="button is-primary" @click="registNewBook">
           Add
         </button>
       </footer>
@@ -80,10 +82,6 @@ export default {
         if (!value) this.resetForm();
         this.$emit('update:isSwitchOn', value);
       }
-    },
-
-    isFormValidate() {
-      return true;
     }
   },
 
@@ -102,7 +100,6 @@ export default {
         allPages: this.allPages,
         status: this.status
       };
-      console.log(variables);
 
       await this.$apollo.mutate({
         mutation: BOOK_REGIST_MUTATION,

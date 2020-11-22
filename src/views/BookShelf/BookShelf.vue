@@ -6,8 +6,8 @@
           >Add</b-button
         >
       </div>
-
-      <BookAddModal :is-active.sync="isActive"></BookAddModal>
+      <!-- Book Add Modal (Regist mode) -->
+      <BookAddModal :is-active.sync="isModalActive"></BookAddModal>
 
       <!-- BookShelf -->
       <div class="shelf-container">
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       allBooks: [],
-      isActive: false
+      isModalActive: false
     };
   },
 
@@ -56,9 +56,9 @@ export default {
       this.$router.push({ name: 'BookInfo', params: { id: id } });
     },
 
+    // open modal
     openAddDialog() {
-      // show modal
-      this.isActive = true;
+      this.isModalActive = true;
     }
   }
 };
