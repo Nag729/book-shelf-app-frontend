@@ -4,10 +4,12 @@
       <p class="message-title">
         Velocity
       </p>
+      <p>|</p>
       <p>
         Monthly: <strong>{{ monthlyVelocity }}</strong
         >pages
       </p>
+      <p>|</p>
       <p>
         Weekly: <strong>{{ weeklyVelocity }}</strong
         >pages

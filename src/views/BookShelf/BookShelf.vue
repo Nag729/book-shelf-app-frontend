@@ -73,7 +73,6 @@ export default {
 .velocity-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .shelf-container {
