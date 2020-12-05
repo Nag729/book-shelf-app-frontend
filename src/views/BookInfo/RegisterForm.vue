@@ -95,11 +95,11 @@ export default {
 
       // Date Validation
       const typedDate = new Date(this.date);
-      const isTypedDateAfterToday = typedDate.getDate() > new Date().getDate();
+      const isTypedDateAfterToday = typedDate.getTime() > new Date().getTime();
       const isTypedDateBeforeLast =
         hasProgress &&
-        new Date(progress[progress.length - 1].readAt).getDate() >
-          typedDate.getDate();
+        new Date(progress[progress.length - 1].readAt).getTime() >
+          typedDate.getTime();
 
       if (isTypedDateAfterToday || isTypedDateBeforeLast) {
         this.$buefy.dialog.alert({

@@ -141,6 +141,16 @@ export default {
         `https://www.googleapis.com/books/v1/volumes?q=${this.keyword}`
       );
 
+      // no result
+      if (!response.data.items) {
+        this.$buefy.dialog.alert({
+          title: 'Search Error',
+          message: 'Cannno find the book.',
+          type: 'is-danger'
+        });
+        return;
+      }
+
       // Arrange data
       const topItems = response.data.items
         .filter(book => {

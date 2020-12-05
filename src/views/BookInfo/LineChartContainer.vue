@@ -32,7 +32,7 @@ export default {
             fill: false,
             type: 'line',
             lineTension: 0,
-            steppedLine: 'after'
+            steppedLine: 'before'
           }
         ]
       },
@@ -129,7 +129,12 @@ export default {
       const latestDate = labels[labels.length - latestIdx];
 
       const dates = this.createAllDaysLabelData(oldestDate, latestDate);
-      this.chartData.labels = dates;
+      const displayDates = dates.map(d => {
+        return moment(d)
+          .add(1, 'days')
+          .format('MM/DD');
+      });
+      this.chartData.labels = displayDates;
 
       /**
        * shape reading page data.
@@ -148,7 +153,7 @@ export default {
           now
             .clone()
             .subtract(1, 'days')
-            .format('MM/DD')
+            .format('YYYY/MM/DD')
         );
         now.add(1, 'days');
       }
@@ -168,7 +173,7 @@ export default {
         return {
           date: moment(row.readAt)
             .subtract(1, 'days')
-            .format('MM/DD'),
+            .format('YYYY/MM/DD'),
           page: row.currentPage
         };
       });
