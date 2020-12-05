@@ -13,27 +13,38 @@
 
       <!-- Footer -->
       <TheFooter></TheFooter>
+
+      <!-- Loading -->
+      <loading :active.sync="isLoading" is-full-page></loading>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'App',
 
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+    Loading
   },
 
   computed: {
     hasBackground() {
       const isTarget = ['BookShelf', 'BookInfo'];
       return isTarget.indexOf(this.$route.name) !== -1;
-    }
+    },
+
+    ...mapState({
+      isLoading: state => state.isLoading
+    })
   }
 };
 </script>
