@@ -12,8 +12,13 @@
             <ReadingInfo></ReadingInfo>
 
             <!-- line chart -->
-            <div class="line-chart">
+            <!-- <div class="line-chart">
               <LineChartContainer></LineChartContainer>
+            </div> -->
+
+            <!-- Timeline -->
+            <div class="timeline">
+              <Timeline></Timeline>
             </div>
 
             <!-- Forms -->
@@ -28,8 +33,9 @@
 <script>
 import BookCard from './BookCard';
 import ReadingInfo from './ReadingInfo';
-import LineChartContainer from './LineChartContainer';
+// import LineChartContainer from './LineChartContainer';
 import RegisterForm from './RegisterForm';
+import Timeline from './Timeline';
 
 export default {
   name: 'BookInfo',
@@ -37,8 +43,9 @@ export default {
   components: {
     BookCard,
     ReadingInfo,
-    LineChartContainer,
-    RegisterForm
+    // LineChartContainer,
+    RegisterForm,
+    Timeline
   }
 };
 </script>
@@ -49,7 +56,13 @@ export default {
   margin: 0 auto;
 }
 
-.line-chart {
-  margin: 2% 0;
+// .line-chart {
+//   margin: 2% 0;
+// }
+
+.timeline {
+  max-height: 60vh;
+  overflow: scroll;
+  margin: 3% 0;
 }
 </style>
