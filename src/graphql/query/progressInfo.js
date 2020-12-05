@@ -10,6 +10,7 @@ export const PROGRESS_INFO_QUERY = gql`
         id
         currentPage
         readAt
+        note
       }
     }
   }
