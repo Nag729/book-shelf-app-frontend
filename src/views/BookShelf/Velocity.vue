@@ -74,9 +74,12 @@ export default {
         return latestReadPage;
       }
 
-      oldestReadPage = allProgress.find(
+      const oldBook = allProgress.find(
         progress => limitDate < progress['readAt']
-      )['currentPage'];
+      );
+
+      const oldestReadPage =
+        typeof oldBook === 'undefined' ? 0 : oldBook['currentPage'];
 
       return latestReadPage - oldestReadPage;
     }
