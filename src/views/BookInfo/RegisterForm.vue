@@ -24,6 +24,12 @@
             ></b-numberinput>
           </b-field>
         </div>
+        <div class="column">
+          <!-- note form -->
+          <b-field label="note">
+            <b-input v-model="note" type="textarea"></b-input>
+          </b-field>
+        </div>
       </div>
       <div class="columns">
         <!-- Register Button -->
@@ -131,7 +137,8 @@ export default {
         variables: {
           bookId: this.$route.params.id,
           currentPage: this.page,
-          readAt: this.date
+          readAt: this.date,
+          note: this.note
         }
       });
 
