@@ -52,6 +52,7 @@ export default {
 <style lang="scss">
 // Import Bulma's core
 @import '~bulma/sass/utilities/_all';
+@import '~bulma-timeline';
 
 // Set your colors
 $primary: #8c67ef;
