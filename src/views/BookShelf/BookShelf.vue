@@ -1,10 +1,13 @@
 <template>
   <div>
     <section>
-      <div class="buttons is-right">
-        <b-button type="is-info" icon-left="plus" @click="openAddDialog"
-          >Add</b-button
-        >
+      <div class="velocity-container">
+        <Velocity></Velocity>
+        <div>
+          <b-button type="is-info" icon-left="plus" @click="openAddDialog">
+            Add
+          </b-button>
+        </div>
       </div>
       <!-- Book Add Modal (Regist mode) -->
       <BookAddModal :is-active.sync="isModalActive"></BookAddModal>
@@ -28,6 +31,7 @@
 <script>
 import SingleBook from './SingleBook';
 import BookAddModal from '@/views/BookAddModal/BookAddModal';
+import Velocity from './Velocity';
 import { ALL_BOOKS_QUERY } from '@/graphql/query/allBooks';
 
 export default {
@@ -35,7 +39,8 @@ export default {
 
   components: {
     SingleBook,
-    BookAddModal
+    BookAddModal,
+    Velocity
   },
 
   data() {
@@ -75,6 +80,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.velocity-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .shelf-container {
   width: 80%;
   margin: 0 auto;
