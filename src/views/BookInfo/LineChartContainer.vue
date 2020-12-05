@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// TODO: replace moment to dayjs
 import moment from 'moment';
 import LineChart from '@/components/LineChart';
 import { PROGRESS_INFO_QUERY } from '@/graphql/query/progressInfo';
@@ -30,7 +31,8 @@ export default {
             borderColor: '#CC99FF',
             fill: false,
             type: 'line',
-            lineTension: 0
+            lineTension: 0,
+            steppedLine: 'after'
           }
         ]
       },
@@ -60,7 +62,6 @@ export default {
                 display: true,
                 labelString: 'Page'
               },
-              // TODO: maxをbook.allPagesにする
               ticks: {
                 beginAtZero: true
               }
@@ -92,26 +93,114 @@ export default {
 
   methods: {
     updateChartData() {
-      const book = this.book;
-      const progress = book.progress;
+      const progress = this.book.progress;
 
       if (!progress || progress.length === 0) {
+        // initialize chart data.
         this.chartData.labels = [];
-        this.chartData.datasets.data = [];
+        this.chartData.datasets[0].data = [];
         return;
       }
 
-      // label
-      const labels = progress.map(row => {
-        return moment(row['readAt']).format('MM/DD');
-      });
-      this.chartData.labels = labels;
+      this.shapeDataForChart();
+    },
 
-      // data
-      const pages = progress.map(row => {
-        return row['currentPage'];
+    /**
+     * shape progress data for displaying on chart.
+     */
+    shapeDataForChart() {
+      const progress = this.book.progress;
+      const labels = progress.map(row => {
+        return moment(row.readAt);
       });
+
+      this.addUnreadDaysToChart(progress, labels);
+      this.addAllPagesToChart(progress);
+    },
+
+    // add unread days to chart.
+    addUnreadDaysToChart(progress, labels) {
+      /**
+       * shape label data.
+       */
+      // FIXME: 'x/x' で判断するよりも明示的なフラグを持たせた方が良さそう
+      const latestIdx = labels[labels.length - 1] !== 'x/x' ? 1 : 2;
+      const oldestDate = labels[0];
+      const latestDate = labels[labels.length - latestIdx];
+
+      const dates = this.createAllDaysLabelData(oldestDate, latestDate);
+      this.chartData.labels = dates;
+
+      /**
+       * shape reading page data.
+       */
+      const pages = this.createAllDaysPageData(progress, dates);
       this.chartData.datasets[0].data = pages;
+    },
+
+    // create label data.
+    // ※ args expect Moment date object.
+    createAllDaysLabelData(oldestDate, latestDate) {
+      const dates = [];
+      const now = oldestDate.clone();
+      while (now.isSameOrBefore(latestDate)) {
+        dates.push(
+          now
+            .clone()
+            .subtract(1, 'days')
+            .format('MM/DD')
+        );
+        now.add(1, 'days');
+      }
+      return dates;
+    },
+
+    // create page data.
+    createAllDaysPageData(progress, dates) {
+      const pageList = {};
+
+      // initialize
+      dates.forEach(d => {
+        pageList[d] = 0;
+      });
+
+      const readingList = progress.map(row => {
+        return {
+          date: moment(row.readAt)
+            .subtract(1, 'days')
+            .format('MM/DD'),
+          page: row.currentPage
+        };
+      });
+
+      readingList.forEach(row => {
+        // update page data from progress.
+        pageList[row.date] = row.page;
+      });
+
+      const pages = Object.values(pageList);
+      let now = pages[0];
+      pages.forEach((val, idx) => {
+        // considering unread days.
+        if (val === 0) {
+          pages[idx] = now;
+        } else {
+          now = val;
+        }
+      });
+
+      return pages;
+    },
+
+    // add all pages to chart
+    addAllPagesToChart(progress) {
+      const allPages = this.book.allPages;
+      const isDone = progress[progress.length - 1]['currentPage'] === allPages;
+
+      if (!isDone) {
+        this.chartData.labels.push('x/x');
+        this.chartData.datasets[0].data.push(allPages);
+      }
     }
   }
 };
