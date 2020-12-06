@@ -31,7 +31,7 @@ export default {
 }
 
 .card-content {
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .title {
