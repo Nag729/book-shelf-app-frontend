@@ -1,9 +1,22 @@
 <template>
-  <div>
-    <section>
-      <div class="columns">
-        <!-- DatePicker -->
-        <div class="column">
+  <b-modal
+    :active.sync="isLocalActive"
+    has-modal-card
+    trap-focus
+    :destroy-on-hide="false"
+    aria-role="dialog"
+    aria-modal
+  >
+    <div class="modal-card">
+      <form ref="inputForm" @submit.prevent>
+        <!-- Header -->
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add A Progress!</p>
+        </header>
+
+        <!-- Body -->
+        <section class="modal-card-body">
+          <!-- Date -->
           <b-field label="DATE">
             <b-datepicker
               v-model="date"
@@ -12,9 +25,7 @@
               trap-focus
             ></b-datepicker>
           </b-field>
-        </div>
-        <!-- Page Number -->
-        <div class="column">
+          <!-- Read Page -->
           <b-field label="PAGE">
             <b-numberinput
               v-model="page"
@@ -23,26 +34,24 @@
               :max="max"
             ></b-numberinput>
           </b-field>
-        </div>
-        <div class="column">
-          <!-- note form -->
-          <b-field label="note">
+          <!-- Note -->
+          <b-field label="NOTE">
             <b-input v-model="note" type="textarea"></b-input>
           </b-field>
-        </div>
-      </div>
-      <div class="columns">
-        <!-- Register Button -->
-        <div class="column">
-          <div class="is-pulled-right">
-            <b-button type="is-primary" icon-left="book-open" @click="regist"
-              >I Read it !</b-button
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="modal-card-foot">
+          <button class="button" type="button" @click="closeModal">
+            Close
+          </button>
+          <button class="button is-primary" @click="addProgress">
+            Add
+          </button>
+        </footer>
+      </form>
+    </div>
+  </b-modal>
 </template>
 
 <script>
@@ -50,9 +59,14 @@ import { PROGRESS_INFO_QUERY } from '@/graphql/query/progressInfo';
 import { PROGRESS_REGIST_MUTATION } from '@/graphql/mutation/progressRegist';
 
 export default {
-  name: 'RegisterForm',
+  name: 'ProgressAddModal',
 
-  props: {},
+  props: {
+    isActive: {
+      type: Boolean,
+      required: true
+    }
+  },
 
   data() {
     return {
@@ -60,7 +74,8 @@ export default {
       date: new Date(),
       page: 0,
       min: 0,
-      max: 500
+      max: 500,
+      note: ''
     };
   },
 
@@ -75,6 +90,17 @@ export default {
     }
   },
 
+  computed: {
+    isLocalActive: {
+      get() {
+        return this.isActive;
+      },
+      set(value) {
+        this.$emit('update:isActive', value);
+      }
+    }
+  },
+
   async mounted() {
     await this.$apollo.queries.book.refetch();
     this.setInitValues();
@@ -83,7 +109,7 @@ export default {
   methods: {
     setInitValues() {
       const progress = this.book.progress;
-      if (!progress || progress.length === 0) return;
+      if (!progress || !progress.length) return;
 
       // page, min
       const idx = progress.length - 1;
@@ -94,7 +120,7 @@ export default {
       this.max = this.book.allPages;
     },
 
-    async regist() {
+    async addProgress() {
       // Validation Check
       const progress = this.book.progress;
       const hasProgress = progress.length > 0;
@@ -149,8 +175,16 @@ export default {
 
       // re-search
       await this.$apollo.queries.book.refetch();
-      this.setInitValues();
+
+      // close modal
+      this.closeModal();
+    },
+
+    closeModal() {
+      this.isLocalActive = false;
     }
   }
 };
 </script>
+
+<style lang="scss" scoped></style>

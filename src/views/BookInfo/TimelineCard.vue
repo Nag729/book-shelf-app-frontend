@@ -1,7 +1,13 @@
 <template>
   <div>
     <div class="card timeline-card">
-      <div class="card-content">
+      <div class="card-content flex-container">
+        <b-image
+          class="user-icon"
+          :src="$auth.user.picture"
+          alt="Icon"
+          :rounded="true"
+        ></b-image>
         <p class="title">
           {{ note }}
         </p>
@@ -32,6 +38,17 @@ export default {
 
 .card-content {
   padding: 1rem;
+}
+
+.flex-container {
+  width: 100%;
+  display: flex;
+}
+
+.user-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 3%;
 }
 
 .title {

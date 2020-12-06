@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="progressList" class="timeline">
-      <div v-for="p in progressList" :key="p.date" class="timeline-item">
+      <div v-for="p in progressList" :key="p.idx" class="timeline-item">
         <TimelineIcon></TimelineIcon>
         <div class="timeline-content">
           <p class="heading">{{ p.date + ' | ' + p.page + ' PAGE' }}</p>
@@ -52,16 +52,15 @@ export default {
       const book = this.book;
       if (!(book && book.progress && book.progress.length)) return null;
 
-      const list = book.progress.map(p => {
+      const list = book.progress.map((p, idx) => {
         return {
+          idx: idx,
           page: p.currentPage,
           date: moment(p.readAt).format('MM/DD'),
-          // note: p.note || null
-          note:
-            'DIPについて学んだ。色々と理解できた。あああああああああああああああああああああああいいいいいいいいいいいいいいいいいいいいいいいいうううううううううううううううううううううううううええええええええええええええええええええええええおおおおおおおおおおおおおおおお御おおおおおおおおおおおお'
+          note: p.note || null
         };
       });
-      return list;
+      return list.reverse();
     }
   }
 };
@@ -94,5 +93,9 @@ $--timeline-color: #8c67ef;
 .timeline .timeline-item .timeline-marker.is-icon {
   height: 36px;
   width: 36px;
+}
+
+.timeline .timeline-item .timeline-content {
+  width: 100%;
 }
 </style>

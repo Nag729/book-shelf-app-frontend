@@ -20,9 +20,6 @@
             <div class="timeline">
               <Timeline></Timeline>
             </div>
-
-            <!-- Forms -->
-            <RegisterForm></RegisterForm>
           </div>
         </div>
       </div>
@@ -34,7 +31,6 @@
 import BookCard from './BookCard';
 import ReadingInfo from './ReadingInfo';
 // import LineChartContainer from './LineChartContainer';
-import RegisterForm from './RegisterForm';
 import Timeline from './Timeline';
 
 export default {
@@ -44,7 +40,6 @@ export default {
     BookCard,
     ReadingInfo,
     // LineChartContainer,
-    RegisterForm,
     Timeline
   }
 };
@@ -61,8 +56,7 @@ export default {
 // }
 
 .timeline {
-  max-height: 60vh;
-  overflow: scroll;
+  overflow: auto;
   margin: 3% 0;
 }
 </style>
