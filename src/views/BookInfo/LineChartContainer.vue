@@ -1,3 +1,4 @@
+<!-- *** UNUSED COMPONENT *** -->
 <template>
   <div class="container">
     <LineChart v-if="loaded" :chart-data="chartData" :options="options" />

@@ -129,4 +129,8 @@ export default {
     margin-left: 2%;
   }
 }
+
+.content {
+  font-weight: bold;
+}
 </style>

@@ -69,7 +69,7 @@ export default {
 }
 
 .user-icon {
-  width: 20%;
+  width: 20vw;
   margin: 0 auto;
 }
 </style>
